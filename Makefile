@@ -8,7 +8,7 @@ LIBFT = ./libft/libft.a
 all: $(NAME)
 
 $(NAME):
-	@gcc -I /usr/local/include ./libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address -o $(NAME)
+	@gcc -I /usr/local/include ./libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 g:
 	@gcc -g $(SRCS) -o $(NAME)
