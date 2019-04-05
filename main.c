@@ -6,11 +6,22 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 15:12:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 18:56:49 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		hoook()
+{
+
+	return (0);
+}
+
+int		loop_hook(t_fdf *fdf)
+{
+	return (0);
+}
 
 int		deal_key(int key, t_fdf *fdf)
 {
@@ -19,6 +30,8 @@ int		deal_key(int key, t_fdf *fdf)
 	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
+	// while (key == 4)
+	// 	write(1,"dsaedqdr\n",10);
 	if (key == 124 || key == 123 || key == 125 || key == 126)
 		uprld(key, fdf);
 	return (0);
@@ -182,9 +195,12 @@ int		main(void)
 	xy1(fdf, 50, 650);
 	xy2(fdf, 1500, 780);
 	draw_line(fdf);
-	mlx_key_hook(fdf.win_ptr, deal_key, &(fdf));
+	// mlx_key_hook(fdf.win_ptr, deal_key, &(fdf));
 	mlx_mouse_hook(fdf.win_ptr, deal_mouse, &(fdf));
 	mlx_expose_hook (fdf.win_ptr, expose_hook, &(fdf));
+	mlx_hook(fdf.win_ptr, 2, 0, hoook, &(fdf)); // ЭТО ВАЖНО МНЕ КАЖЕТСЯ 
+	mlx_hook(fdf.win_ptr, 2, 0, deal_key, &fdf);
+	mlx_loop_hook(fdf.mlx_ptr, loop_hook, &(fdf));
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
 	// mlx_destroy_image(fdf.mlx_ptr, fdf.img_ptr);
 	mlx_loop(fdf.mlx_ptr);
