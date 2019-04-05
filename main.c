@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 09:04:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 09:08:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int		deal_mouse(int mouse, void *param)
 
 void	whitepixel(t_fdf fdf, int x, int y)
 {
-	fdf.img.str[3200 * y + x * 4] = 0xFF;
-	fdf.img.str[3200 * y + x * 4 + 1] = 0xFF;
-	fdf.img.str[3200 * y + x * 4 + 2] = 0xFF;
+	fdf.img.str[7680 * y + x * 4] = 0xFF;
+	fdf.img.str[7680 * y + x * 4 + 1] = 0xFF;
+	fdf.img.str[7680 * y + x * 4 + 2] = 0xFF;
 }
 
 int		main(void)
@@ -40,19 +40,19 @@ int		main(void)
 	t_fdf	fdf;
 
 	fdf.mlx_ptr = mlx_init();
-	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 800, 600, "test");
-	fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 800, 600);
+	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
+	fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);
 	fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
 	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	printf("S = %s\n", fdf.img.str);
-	// fdf.img.str[800 * 100 + 400] = 0xFF;
-	// fdf.img.str[800 * 100 + 401] = 0xFF;
-	// fdf.img.str[800 * 100 + 402] = 0xFF;
-	whitepixel(fdf, 400, 100);
+	// fdf.img.str[7680 * 100 + 400] = 0xFF;
+	// fdf.img.str[7680 * 100 + 401] = 0xFF;
+	// fdf.img.str[7680 * 100 + 402] = 0xFF;
+	whitepixel(fdf, 500, 500);
 	// draw_line(mlx_ptr, win_ptr, ko);
 	mlx_key_hook(fdf.win_ptr, deal_key, (void *)0);
 	mlx_mouse_hook(fdf.win_ptr, deal_mouse, (void *)0);
-	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 100, 0);
+	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
 	// mlx_destroy_image(mlx_ptr, img_ptr);
 	mlx_loop(fdf.mlx_ptr);
 	return (0);
