@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 13:23:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 13:41:27 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,40 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 53)
 		exit(0);
 	if (key == 124 || key == 123 || key == 125 || key == 126)
-	{
 		uprld(key, fdf);
-	}
 	return (0);
+}
+
+void	upr_l(t_fdf *fdf, int *u, int d, int r_l)
+{
+	*u = *u + 4;
+	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, \
+	r_l, d - *u);
+}
+
+void	rid_u(t_fdf *fdf, int *r, int l, int d_u)
+{
+	*r = *r + 4;
+	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
+	 *r - l, d_u);
+}
+
+void	dor_l(t_fdf *fdf, int *d, int u, int r_l)
+{
+	*d = *d + 4;
+	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
+	 r_l, *d - u);
+}
+
+void	led_u(t_fdf *fdf, int *l, int r, int d_u)
+{
+	*l = *l + 4;
+	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
+	 r - *l, d_u);
 }
 
 void	uprld(int key, t_fdf *fdf)
@@ -33,29 +63,13 @@ void	uprld(int key, t_fdf *fdf)
 	static int l = 0;
 
 	if (key == 126)
-	{
-		u += 4;
-		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
-	}
+		upr_l(fdf, &u, d, r - l);
 	if (key == 124)
-	{
-		r += 4;
-		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
-	}
+		rid_u(fdf, &r, l, d - u);
 	if (key == 125)
-	{
-		d += 4;
-		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
-	}
+		dor_l(fdf, &d, u, r - l);
 	if (key == 123)
-	{
-		l += 4;
-		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
-	}
+		led_u(fdf, &l, r, d - u);
 }
 
 int		expose_hook(void *param)
