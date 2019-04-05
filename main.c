@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 06:15:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 06:29:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	draw_line(void *mlx_ptr, void *win_ptr, int *ko)
 			ko[1] += ds[3];
 		}
 	}
+	free(ds);
+	free(ko);
+	ko = NULL;
 }
 
 int		main(void)
@@ -90,9 +93,9 @@ int		main(void)
 	void	*win_ptr;
 	int		*ko;
 
-	ko = makekoor4(50, 50, 200, 200);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "test");
+	ko = makekoor4(50, 50, 200, 200);
 	draw_line(mlx_ptr, win_ptr, ko);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_mouse_hook(win_ptr, deal_mouse, (void *)0);
