@@ -5,11 +5,10 @@ FLAGS = -Wall -Wextra -Werror
 SRCS = main.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = ./libft/libft.a
-all:
-	gcc -I /usr/local/include ./libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+all: $(NAME)
 
-$(NAME): $(LIBFT)
-	@gcc $(SRCS) -o $(NAME) -I libft -I .
+$(NAME):
+	@gcc -I /usr/local/include ./libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 g:
 	@gcc -g $(SRCS) -o $(NAME)
@@ -18,7 +17,7 @@ g:
 	#$(MAKE) -C ./libft clean
 
 fclean: #clean
-	rm -f a.out
+	@rm -f $(NAME)
 #	rm -f ./libft/libft.a
 
 re: fclean all
