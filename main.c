@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 05:59:06 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 06:12:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,46 @@ int		*makekoor4(int x1, int y1, int x2, int y2)
 	return (ko);
 }
 
+int		*deltaandsign(int *ko)
+{
+	int	*rez;
+
+	rez = (int *)malloc(sizeof(int) * 4);
+	rez[0] = abs(ko[2] - ko[0]);
+	rez[1] = abs(ko[3] - ko[1]);
+	if (ko[0] < ko[2])
+		rez[2] = 1;
+	else
+		rez[2] = -1;
+	if (ko[1] < ko[3])
+		rez[3] = 1;
+	else
+		rez[3] = -1;
+	return (rez);
+}
+
 void	draw_line(void *mlx_ptr, void *win_ptr, int *ko)
 {
-    const int deltaX = abs(ko[2] - ko[0]);
-    const int deltaY = abs(ko[3] - ko[1]);
-    const int signX = ko[0] < ko[2] ? 1 : -1;
-    const int signY = ko[1] < ko[3] ? 1 : -1;
-	int		error = deltaX - deltaY;
+	int		*ds;
+	int		error;
+	int		error2;
 
+	ds = deltaandsign(ko);	
+	error = ds[0] - ds[1];
 	mlx_pixel_put(mlx_ptr, win_ptr, ko[2], ko[3], 0xFFFFFF);
     while(ko[0] != ko[2] || ko[1] != ko[3]) 
    {
         mlx_pixel_put(mlx_ptr, win_ptr, ko[0], ko[1], 0xFFFFFF);
-        const int error2 = error * 2;
-        //
-        if(error2 > -deltaY) 
+        error2 = error * 2;
+        if(error2 > -ds[1]) 
         {
-            error -= deltaY;
-            ko[0] += signX;
+            error -= ds[1];
+            ko[0] += ds[2];
         }
-        if(error2 < deltaX) 
+        if(error2 < ds[0]) 
         {
-            error += deltaX;
-            ko[1] += signY;
+            error += ds[0];
+            ko[1] += ds[3];
         }
     }
 }
