@@ -6,12 +6,11 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 04:22:49 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 05:38:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "./libft/libft.h"
+#include "fdf.h"
 
 int		deal_key(int key, void *param)
 {
@@ -22,6 +21,13 @@ int		deal_key(int key, void *param)
 	return (0);
 }
 
+int		deal_mouse(int mouse, void *param)
+{
+	ft_putnbr(mouse);
+	ft_putchar('\n');
+	return (0);
+}
+
 int		main()
 {
 	void	*mlx_ptr;
@@ -29,7 +35,6 @@ int		main()
 	int		x;
 	int		y;
 
-	ft_putchar('s');
 	x = 0;
 	y = 0;
 	mlx_ptr = mlx_init();
@@ -38,9 +43,10 @@ int		main()
 	{
 		mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFFFFFF);
 		x++;
-		y++;
+		y = y + 3;
 	}
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
+	mlx_mouse_hook(win_ptr, deal_mouse, (void *)0);
 	mlx_loop(mlx_ptr);
 	return (0);
 }
