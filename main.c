@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 13:07:47 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 13:23:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,44 @@ int		deal_key(int key, t_fdf *fdf)
 	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
-	if (key == 126)
-		{
-			// xy1(*fdf, 0, 0);
-			// xy2(*fdf, 910, 850);
-			// whitepixel(*fdf, 500, 500);
-			// draw_line(*fdf);
-			mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-			// (*fdf).win_ptr = mlx_new_window((*fdf).mlx_ptr, 1920, 1080, "test");
-			mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 100, 0);
-		}
+	if (key == 124 || key == 123 || key == 125 || key == 126)
+	{
+		uprld(key, fdf);
+	}
 	return (0);
+}
+
+void	uprld(int key, t_fdf *fdf)
+{
+	static int u = 0;
+	static int r = 0;
+	static int d = 0;
+	static int l = 0;
+
+	if (key == 126)
+	{
+		u += 4;
+		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
+	}
+	if (key == 124)
+	{
+		r += 4;
+		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
+	}
+	if (key == 125)
+	{
+		d += 4;
+		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
+	}
+	if (key == 123)
+	{
+		l += 4;
+		mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, r - l, d - u);
+	}
 }
 
 int		expose_hook(void *param)
@@ -125,7 +152,6 @@ int		main(void)
 	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	xy1(fdf, 50, 650);
 	xy2(fdf, 1500, 780);
-	whitepixel(fdf, 500, 500);
 	draw_line(fdf);
 	mlx_key_hook(fdf.win_ptr, deal_key, &(fdf));
 	mlx_mouse_hook(fdf.win_ptr, deal_mouse, &(fdf));
