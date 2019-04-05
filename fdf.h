@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 13:16:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 15:07:12 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_fdf
 
 int		deal_key(int key, t_fdf *fdf);
 int		expose_hook(void *param);
-int		deal_mouse(int mouse, void *param);
+int		deal_mouse(int mouse, int x, int y, t_fdf *fdf);
 void	whitepixel(t_fdf fdf, int x, int y);
 int		*deltaandsign(t_fdf fdf);
 void	draw_line(t_fdf fdf);

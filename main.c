@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 13:41:27 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 15:10:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		deal_key(int key, t_fdf *fdf)
 {
+	mlx_do_key_autorepeaton((*fdf).mlx_ptr);
 	ft_putnbr(key);
 	ft_putchar('\n');
 	if (key == 53)
@@ -78,8 +79,21 @@ int		expose_hook(void *param)
 	return (0);
 }
 
-int		deal_mouse(int mouse, void *param)
+int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
+	static int k = 0;
+	if (mouse == 1 && k == 1)
+	{
+		xy2(*fdf, x, y);
+		k = 0;
+		draw_line(*fdf);
+		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
+	}
+	if (mouse == 1 && k == 0)
+	{
+		xy1(*fdf, x, y);
+		k++;
+	}
 	ft_putnbr(mouse);
 	ft_putchar('\n');
 	return (0);
