@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 11:20:06 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 12:53:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,15 @@ typedef struct	s_fdf
 	t_img		img;
 	t_mkline	*koord;
 }				t_fdf;
+
+int		deal_key(int key, t_fdf *fdf);
+int		expose_hook(void *param);
+int		deal_mouse(int mouse, void *param);
+void	whitepixel(t_fdf fdf, int x, int y);
+int		*deltaandsign(t_fdf fdf);
+void	draw_line(t_fdf fdf);
+void	xy1(t_fdf fdf, int x1, int y1);
+void	xy2(t_fdf fdf, int x2, int y2);
+
 
 #endif

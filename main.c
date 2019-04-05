@@ -6,18 +6,32 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 11:37:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 12:56:12 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		deal_key(int key, void *param)
+int		deal_key(int key, t_fdf *fdf)
 {
 	ft_putnbr(key);
 	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
+	if (key == 126)
+		{
+			xy1(*fdf, 0, 0);
+			xy2(*fdf, 910, 850);
+			whitepixel(*fdf, 500, 500);
+			draw_line(*fdf);
+			mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
+		}
+	return (0);
+}
+
+int		expose_hook(void *param)
+{
+
 	return (0);
 }
 
@@ -102,17 +116,15 @@ int		main(void)
 	fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
 	fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
-	// printf("S = %s\n", fdf.img.str);
 	xy1(fdf, 50, 650);
-	xy2(fdf, 50, 780);
-	// fdf.koord->x1 = 50;
-	// printf("x1 = %i, y1 = %i, x2 = %i, y2 = %i", *fdf.koord.x1, *fdf.koord.y1, *fdf.koord.x2, *fdf.koord.y2);
+	xy2(fdf, 1500, 780);
 	whitepixel(fdf, 500, 500);
 	draw_line(fdf);
-	mlx_key_hook(fdf.win_ptr, deal_key, (void *)0);
-	mlx_mouse_hook(fdf.win_ptr, deal_mouse, (void *)0);
+	mlx_key_hook(fdf.win_ptr, deal_key, &(fdf));
+	mlx_mouse_hook(fdf.win_ptr, deal_mouse, &(fdf));
+	mlx_expose_hook (fdf.win_ptr, expose_hook, &(fdf));
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
-	// mlx_destroy_image(mlx_ptr, img_ptr);
+	// mlx_destroy_image(fdf.mlx_ptr, fdf.img_ptr);
 	mlx_loop(fdf.mlx_ptr);
 	return (0);
 }
