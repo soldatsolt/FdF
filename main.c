@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 06:29:00 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 08:24:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,28 @@ int		main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
 	int		*ko;
+	char	*img;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "test");
+	img_ptr = mlx_new_image(mlx_ptr, 800, 600);
+	img = mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
+	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", bits_per_pixel, size_line, endian);
+	printf("S = %s\n", img);
+	img[800 * 100 + 400] = 0xFF;
+	img[800 * 100 + 401] = 0xFF;
+	img[800 * 100 + 402] = 0xFF;
 	ko = makekoor4(50, 50, 200, 200);
-	draw_line(mlx_ptr, win_ptr, ko);
+	// draw_line(mlx_ptr, win_ptr, ko);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_mouse_hook(win_ptr, deal_mouse, (void *)0);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 100, 0);
+	// mlx_destroy_image(mlx_ptr, img_ptr);
 	mlx_loop(mlx_ptr);
 	return (0);
 }
