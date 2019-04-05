@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 12:56:12 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 12:59:34 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int		deal_key(int key, t_fdf *fdf)
 		exit(0);
 	if (key == 126)
 		{
-			xy1(*fdf, 0, 0);
-			xy2(*fdf, 910, 850);
-			whitepixel(*fdf, 500, 500);
-			draw_line(*fdf);
-			mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
+			// xy1(*fdf, 0, 0);
+			// xy2(*fdf, 910, 850);
+			// whitepixel(*fdf, 500, 500);
+			// draw_line(*fdf);
+			mlx_destroy_window((*fdf).mlx_ptr, (*fdf).win_ptr);
+			(*fdf).win_ptr = mlx_new_window((*fdf).mlx_ptr, 1920, 1080, "test");
+			mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 100, 0);
 		}
 	return (0);
 }
