@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 06:12:16 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 06:15:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		deal_key(int key, void *param)
 	ft_putnbr(key);
 	ft_putchar('\n');
 	if (key == 53)
-		exit (0);
+		exit(0);
 	return (0);
 }
 
@@ -64,38 +64,36 @@ void	draw_line(void *mlx_ptr, void *win_ptr, int *ko)
 	int		error;
 	int		error2;
 
-	ds = deltaandsign(ko);	
+	ds = deltaandsign(ko);
 	error = ds[0] - ds[1];
 	mlx_pixel_put(mlx_ptr, win_ptr, ko[2], ko[3], 0xFFFFFF);
-    while(ko[0] != ko[2] || ko[1] != ko[3]) 
-   {
-        mlx_pixel_put(mlx_ptr, win_ptr, ko[0], ko[1], 0xFFFFFF);
-        error2 = error * 2;
-        if(error2 > -ds[1]) 
-        {
-            error -= ds[1];
-            ko[0] += ds[2];
-        }
-        if(error2 < ds[0]) 
-        {
-            error += ds[0];
-            ko[1] += ds[3];
-        }
-    }
+	while (ko[0] != ko[2] || ko[1] != ko[3])
+	{
+		mlx_pixel_put(mlx_ptr, win_ptr, ko[0], ko[1], 0xFFFFFF);
+		error2 = error * 2;
+		if (error2 > -ds[1])
+		{
+			error -= ds[1];
+			ko[0] += ds[2];
+		}
+		if (error2 < ds[0])
+		{
+			error += ds[0];
+			ko[1] += ds[3];
+		}
+	}
 }
 
-int		main()
+int		main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		*ko;
 
-	ko = makekoor4(50 ,50 ,200 ,200);
+	ko = makekoor4(50, 50, 200, 200);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "test");
-
 	draw_line(mlx_ptr, win_ptr, ko);
-
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_mouse_hook(win_ptr, deal_mouse, (void *)0);
 	mlx_loop(mlx_ptr);
