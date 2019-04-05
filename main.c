@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 08:34:14 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/05 09:04:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int		deal_mouse(int mouse, void *param)
 	return (0);
 }
 
+void	whitepixel(t_fdf fdf, int x, int y)
+{
+	fdf.img.str[3200 * y + x * 4] = 0xFF;
+	fdf.img.str[3200 * y + x * 4 + 1] = 0xFF;
+	fdf.img.str[3200 * y + x * 4 + 2] = 0xFF;
+}
+
 int		main(void)
 {
 	t_fdf	fdf;
@@ -38,9 +45,10 @@ int		main(void)
 	fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
 	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	printf("S = %s\n", fdf.img.str);
-	fdf.img.str[800 * 100 + 400] = 0xFF;
-	fdf.img.str[800 * 100 + 401] = 0xFF;
-	fdf.img.str[800 * 100 + 402] = 0xFF;
+	// fdf.img.str[800 * 100 + 400] = 0xFF;
+	// fdf.img.str[800 * 100 + 401] = 0xFF;
+	// fdf.img.str[800 * 100 + 402] = 0xFF;
+	whitepixel(fdf, 400, 100);
 	// draw_line(mlx_ptr, win_ptr, ko);
 	mlx_key_hook(fdf.win_ptr, deal_key, (void *)0);
 	mlx_mouse_hook(fdf.win_ptr, deal_mouse, (void *)0);
