@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 18:56:49 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:49:11 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,10 +182,16 @@ void	xy2(t_fdf fdf, int x2, int y2)
 
 // }
 
-int		main(void)
+int		main(int argc,  char **argv)
 {
 	t_fdf	fdf;
+//	t_map	map;
+//	int		y_count;
 
+//	if (argc != 2)
+//		return (0);
+//	y_count = valid(argv[1]);
+//	map_maker(&argv[1], map, y_count);
 	fdf.mlx_ptr = mlx_init();
 	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
 	fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);

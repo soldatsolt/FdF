@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/05 15:07:12 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:45:54 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 
 #include <mlx.h>
 #include <math.h>
+
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+	int			z;
+	int			colour;
+}				t_point;
+
+typedef struct	s_map
+{
+	t_point		**point;
+	int			height;
+	int			width;
+}				t_map;
 
 typedef struct	s_mkline
 {
@@ -40,8 +55,13 @@ typedef struct	s_fdf
 	void		*img_ptr;
 	t_img		img;
 	t_mkline	*koord;
+	t_map		map;
 }				t_fdf;
 
+
+int     map_maker(char *str, t_map map, int y_count);
+int     valid(char *str);
+void	*img_ptr;
 int		deal_key(int key, t_fdf *fdf);
 int		expose_hook(void *param);
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf);
