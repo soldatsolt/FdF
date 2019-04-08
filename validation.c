@@ -1,25 +1,38 @@
 #include "fdf.h"
 
+int		val_char(char *str)
+{
+	while (*str)
+	{
+		if (!ft_isdigit(*str) && *str != ' ')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 int		valid(char *str)
 {
 	int y_count;
 	int fd;
-	int i;
-	int ret;
-	char line[BUFF_SIZE + 1];
+	int len;
+	int chron_len;
+	char *line;
 
-	i = 0;
+	len = 0;
 	y_count = 0;
+	chron_len = 0;
 	fd = open(str, O_RDONLY);
-	while ((ret = read(fd, line, BUFF_SIZE)))
+	while (get_next_line(fd, &line) > 0)
 	{
-		line[ret] = '\0';
-		while (line[i])
-		{
-			if (line[i] == '\n')
-				++y_count;
-			++i;
-		}
+		len = ft_strlen(line);
+		if (chron_len == 0)
+			chron_len = len;
+		if (len != chron_len)
+			return (0);
+		if (!val_char(line))
+			return (0);
+		++y_count;
 	}
 	close (fd);
 	return (y_count);

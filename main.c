@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/08 22:56:12 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/08 23:35:50 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,11 @@ int		main(int argc,  char **argv)
 	if (argc != 2)
 		return (0);
 	y_count = valid(argv[1]);
+	if (y_count == 0)
+	{
+		ft_putstr("error_map\n");
+		return (0);
+	}
 	fdf = (t_fdf*)malloc(sizeof(t_fdf));
 	map_maker(argv[1], fdf, y_count);
 	printf("map.height = %d map.width = %d map.point[3][3].x = %d map.point[3][3].z = %d\n", fdf->map.height, fdf->map.width, (fdf->map.point)[3][3].x, (fdf->map.point)[3][3].z);
