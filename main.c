@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/08 23:39:58 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/08 23:46:54 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int		main(int argc,  char **argv)
 	}
 	fdf = (t_fdf*)malloc(sizeof(t_fdf));
 	map_maker(argv[1], fdf, y_count);
-	printf("map.height = %d map.width = %d map.point[10][18].x = %d map.point[10][18].z = %d\n", fdf->map.height, fdf->map.width, (fdf->map.point)[10][18].x, (fdf->map.point)[10][18].z);
+	printf("map.height = %d map.width = %d map.point[10][18].x = %d map.point[10][18].z = %d map.point[10][18].colour = %d\n", fdf->map.height, fdf->map.width, (fdf->map.point)[10][18].x, (fdf->map.point)[10][18].z, (fdf->map.point)[10][18].colour);
 	//fdf.mlx_ptr = mlx_init();
 	//fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
 	//fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);

@@ -46,6 +46,7 @@ int		map_maker(char *str, t_fdf *fdf, int y_count)
 				(fdf->map.point)[y_count][x].x = x;
 				(fdf->map.point)[y_count][x].y = y_count;
 				(fdf->map.point)[y_count][x].z = ft_atoi(num[x]);
+				(fdf->map.point)[y_count][x].colour = 16777215;
 				++x;
 		}
 		fdf->map.width = x;
