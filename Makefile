@@ -2,13 +2,13 @@ NAME = fdf
 MAKE = make
 override G += 
 FLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+SRCS = main.c map.c movekeys.c validation.c drawline.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = ./libft/libft.a
 all: $(NAME)
 
 $(NAME):
-	@gcc -I /usr/local/include ./libft/libft.a main.c map.c validation.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@gcc -I /usr/local/include ./libft/libft.a $(SRCS) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 g:
 	@gcc -g $(SRCS) -o $(NAME)
