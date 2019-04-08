@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/08 21:49:11 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/08 22:56:12 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,31 +184,32 @@ void	xy2(t_fdf fdf, int x2, int y2)
 
 int		main(int argc,  char **argv)
 {
-	t_fdf	fdf;
-//	t_map	map;
-//	int		y_count;
+	t_fdf	*fdf;
+	int		y_count;
 
-//	if (argc != 2)
-//		return (0);
-//	y_count = valid(argv[1]);
-//	map_maker(&argv[1], map, y_count);
-	fdf.mlx_ptr = mlx_init();
-	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
-	fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);
-	fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
-	fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
-	printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
-	xy1(fdf, 50, 650);
-	xy2(fdf, 1500, 780);
-	draw_line(fdf);
+	if (argc != 2)
+		return (0);
+	y_count = valid(argv[1]);
+	fdf = (t_fdf*)malloc(sizeof(t_fdf));
+	map_maker(argv[1], fdf, y_count);
+	printf("map.height = %d map.width = %d map.point[3][3].x = %d map.point[3][3].z = %d\n", fdf->map.height, fdf->map.width, (fdf->map.point)[3][3].x, (fdf->map.point)[3][3].z);
+	//fdf.mlx_ptr = mlx_init();
+	//fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
+	//fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);
+	//fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
+	//fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
+	//printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
+	//xy1(fdf, 50, 650);
+	//xy2(fdf, 1500, 780);
+	//draw_line(fdf);
 	// mlx_key_hook(fdf.win_ptr, deal_key, &(fdf));
-	mlx_mouse_hook(fdf.win_ptr, deal_mouse, &(fdf));
-	mlx_expose_hook (fdf.win_ptr, expose_hook, &(fdf));
-	mlx_hook(fdf.win_ptr, 2, 0, hoook, &(fdf)); // ЭТО ВАЖНО МНЕ КАЖЕТСЯ 
-	mlx_hook(fdf.win_ptr, 2, 0, deal_key, &fdf);
-	mlx_loop_hook(fdf.mlx_ptr, loop_hook, &(fdf));
-	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
+	//mlx_mouse_hook(fdf.win_ptr, deal_mouse, &(fdf));
+	//mlx_expose_hook (fdf.win_ptr, expose_hook, &(fdf));
+	//mlx_hook(fdf.win_ptr, 2, 0, hoook, &(fdf)); // ЭТО ВАЖНО МНЕ КАЖЕТСЯ 
+	//mlx_hook(fdf.win_ptr, 2, 0, deal_key, &fdf);
+	//mlx_loop_hook(fdf.mlx_ptr, loop_hook, &(fdf));
+	//mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
 	// mlx_destroy_image(fdf.mlx_ptr, fdf.img_ptr);
-	mlx_loop(fdf.mlx_ptr);
+	//mlx_loop(fdf.mlx_ptr);
 	return (0);
 }

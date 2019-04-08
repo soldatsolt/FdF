@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/08 21:45:54 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/08 22:49:46 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ typedef struct	s_fdf
 	t_map		map;
 }				t_fdf;
 
-
-int     map_maker(char *str, t_map map, int y_count);
+int		map_maker(char *str, t_fdf *fdf, int y_count);
 int     valid(char *str);
 void	*img_ptr;
 int		deal_key(int key, t_fdf *fdf);
