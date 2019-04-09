@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 04:02:34 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 04:35:47 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ int		cclose(void *param)
 	return (0);
 }
 
+int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
+{
+
+	return (0);
+}
+
 int		main(int argc,  char **argv)
 {
 	t_fdf	*ffdf;
@@ -104,7 +110,7 @@ int		main(int argc,  char **argv)
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
 	mlx_hook(fdf.win_ptr, 17, 0, cclose, &fdf);
     mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
-
+	mlx_loop_hook(fdf.mlx_ptr, doloop, &fdf);
     mlx_loop(fdf.mlx_ptr);	
 	return (0);
 }
