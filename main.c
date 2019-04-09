@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 10:23:52 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 01:33:20 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int mouse_move(int x, int y, t_fdf *fdf)
 	if (fdf->mouse.mouse_flag)
 	{
 		// if (fdf->mouse.mouse_x > x)
-			(*fdf).img.x = x - fdf->mouse.mouse_x;
+			(*fdf).img.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
 		// if (fdf->mouse.mouse_x < x)
 		// 	(*fdf).img.x = x - fdf->mouse.mouse_x;
 		// if (fdf->mouse.mouse_y > y)
-			(*fdf).img.y = y - fdf->mouse.mouse_y;
+			(*fdf).img.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
 		// if (fdf->mouse.mouse_y < y)
 		// 	(*fdf).img.y = y - fdf->mouse.mouse_y;
 		ft_putstr("x: ");
@@ -53,6 +53,11 @@ int mouse_move(int x, int y, t_fdf *fdf)
 		ft_putstr("y: ");
 		ft_putnbr((*fdf).img.y);
 		ft_putchar('\n');
+	}
+	else
+	{
+		(*fdf).img.xx = (*fdf).img.x;
+		(*fdf).img.yy = (*fdf).img.y;
 	}
 	return (0);
 }
@@ -116,6 +121,7 @@ int		main(int argc,  char **argv)
 		ft_putstr("error_map\n");
 		return (0);
 	}
+	printf("%G\n", 5474537.346645);
 	ffdf = (t_fdf*)malloc(sizeof(t_fdf));
 	fdf = *ffdf;
 	map_maker(argv[1], &fdf, y_count);
@@ -139,3 +145,4 @@ int		main(int argc,  char **argv)
     mlx_loop(fdf.mlx_ptr);	
 	return (0);
 }
+

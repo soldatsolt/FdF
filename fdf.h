@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 09:20:53 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 01:31:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct	s_img
 	char		*str;
 	int			x;
 	int			y;
+	int			xx;
+	int			yy;
 }				t_img;
 
 typedef struct s_mouse
