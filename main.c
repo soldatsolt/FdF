@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 05:42:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 05:46:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,13 @@ int mouse_move(int x, int y, t_fdf *fdf)
 	if (fdf->mouse.mouse_flag)
 	{
 		// if (fdf->mouse.mouse_x > x)
-		// {
-		// 	(fdf->mouse.mouse_x - x);
-		// 	ft_putchar('\n');
-		// }
-		// if (fdf->mouse.mouse_x < x)
-		// {
-		// 	ft_putnbr(x - fdf->mouse.mouse_x);
-		// 	ft_putchar('\n');
-		// }
-		if (fdf->mouse.mouse_x > x)
-			(*fdf).img.x = fdf->mouse.mouse_x - x;
-		if (fdf->mouse.mouse_x < x)
 			(*fdf).img.x = x - fdf->mouse.mouse_x;
-		if (fdf->mouse.mouse_y > y)
-			(*fdf).img.y = fdf->mouse.mouse_y - y;
-		if (fdf->mouse.mouse_y < y)
+		// if (fdf->mouse.mouse_x < x)
+		// 	(*fdf).img.x = x - fdf->mouse.mouse_x;
+		// if (fdf->mouse.mouse_y > y)
 			(*fdf).img.y = y - fdf->mouse.mouse_y;
+		// if (fdf->mouse.mouse_y < y)
+		// 	(*fdf).img.y = y - fdf->mouse.mouse_y;
 	}
 	return (0);
 }
