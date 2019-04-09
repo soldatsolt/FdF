@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:38:34 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 05:55:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 09:23:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	uprld(int key, t_fdf *fdf)
 {
 	if (key == 126)
-		(*fdf).img.y -= 4;
+		(*fdf).img.y -= 15;
 	if (key == 124)
-		(*fdf).img.x += 4;
+		(*fdf).img.x += 15;
 	if (key == 125)
-		(*fdf).img.y += 4;
+		(*fdf).img.y += 15;
 	if (key == 123)
-		(*fdf).img.x -= 4;
+		(*fdf).img.x -= 15;
 }

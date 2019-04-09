@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 05:46:00 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 10:23:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int mouse_move(int x, int y, t_fdf *fdf)
 			(*fdf).img.y = y - fdf->mouse.mouse_y;
 		// if (fdf->mouse.mouse_y < y)
 		// 	(*fdf).img.y = y - fdf->mouse.mouse_y;
+		ft_putstr("x: ");
+		ft_putnbr((*fdf).img.x);
+		ft_putchar('\n');
+		ft_putstr("y: ");
+		ft_putnbr((*fdf).img.y);
+		ft_putchar('\n');
 	}
 	return (0);
 }
@@ -60,6 +66,12 @@ int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
 	if (mouse == 1)
 	{
+		ft_putstr("release x: ");
+		ft_putnbr((*fdf).img.x);
+		ft_putchar('\n');
+		ft_putstr("release y: ");
+		ft_putnbr((*fdf).img.y);
+		ft_putchar('\n');
 		fdf->mouse.mouse_flag = 1;
 		fdf->mouse.mouse_x = x;
 		fdf->mouse.mouse_y = y;
