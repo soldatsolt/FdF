@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 04:55:53 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 05:40:48 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,28 @@ int		deal_key(int key, t_fdf *fdf)
 	return (0);
 }
 
-int mouse_press(int button, int x, int y, t_fdf *fdf)
+int mouse_move(int x, int y, t_fdf *fdf)
 {
-
+	if (fdf->mouse.mouse_flag)
+	{
+		if (fdf->mouse.mouse_x > x)
+		{
+			ft_putnbr(fdf->mouse.mouse_x - x);
+			ft_putchar('\n');
+		}
+		if (fdf->mouse.mouse_x < x)
+		{
+			ft_putnbr(x - fdf->mouse.mouse_x);
+			ft_putchar('\n');
+		}
+	// 	(*fdf).img.x = fdf->mouse.mouse_x - x;
+	// if (fdf->mouse.mouse_x < x)
+	// 	(*fdf).img.x = x - fdf->mouse.mouse_x;
+	// if (fdf->mouse.mouse_y > y)
+	// 	(*fdf).img.y = fdf->mouse.mouse_y - y;
+	// if (fdf->mouse.mouse_x < y)
+	// 	(*fdf).img.y = y - fdf->mouse.mouse_y;
+	}
 	return (0);
 }
 
@@ -52,7 +71,7 @@ int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 	{
 		fdf->mouse.mouse_flag = 1;
 		fdf->mouse.mouse_x = x;
-		fdf->mouse.mouse_x = y;
+		fdf->mouse.mouse_y = y;
 	}
 	ft_putnbr(mouse);
 	ft_putchar('\n');
@@ -108,8 +127,9 @@ int		main(int argc,  char **argv)
     xy2((fdf), 1500, 780);
     draw_line((fdf));
     mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
-	mlx_hook(fdf.win_ptr, 6, 0, mouse_press, &fdf);
+	mlx_hook(fdf.win_ptr, 6, 0, mouse_move, &fdf);
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
+	mlx_hook(fdf.win_ptr, 5, 0, mouse_release, &fdf);
 	mlx_hook(fdf.win_ptr, 17, 0, cclose, &fdf);
 
 	mlx_loop_hook(fdf.mlx_ptr, doloop, &fdf);
