@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 00:45:21 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 04:02:34 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int		deal_key(int key, t_fdf *fdf)
 	return (0);
 }
 
+int mouse_press(int button, int x, int y, t_fdf *fdf)
+{
+
+	return (0);
+}
+
 int		expose_hook(void *param)
 {
 	return (0);
@@ -42,22 +48,27 @@ int		expose_hook(void *param)
 
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
-	static int k = 0;
-	if (mouse == 1 && k == 0)
+	if (mouse == 1)
 	{
-		xy1(*fdf, x, y);
-		k++;
-		return (0);
-	}
-	if (mouse == 1 && k == 1)
-	{
-		xy2(*fdf, x, y);
-		k = 0;
-		draw_line(*fdf);
-		mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
+		fdf->mouse.mouse_flag = 1;
+		fdf->mouse.mouse_x = x;
+		fdf->mouse.mouse_x = y;
 	}
 	ft_putnbr(mouse);
 	ft_putchar('\n');
+	return (0);
+
+}
+
+int mouse_release(int button, int x, int y, t_fdf *fdf)
+{
+	fdf->mouse.mouse_flag = 0;
+	return (0);
+}
+
+int		cclose(void *param)
+{
+	exit(0);
 	return (0);
 }
 
@@ -88,8 +99,12 @@ int		main(int argc,  char **argv)
     xy1(fdf, 50, 650);
     xy2(fdf, 1500, 780);
     draw_line(fdf);
-    mlx_hook(fdf.win_ptr, 2, 0, hoook, &(fdf));
-    mlx_hook(fdf.win_ptr, 2, 0, deal_key, &fdf);
+    mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
+	mlx_hook(fdf.win_ptr, 6, 0, mouse_press, &fdf);
+    mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
+	mlx_hook(fdf.win_ptr, 17, 0, cclose, &fdf);
     mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img_ptr, 0, 0);
-    mlx_loop(fdf.mlx_ptr);	return (0);
+
+    mlx_loop(fdf.mlx_ptr);	
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 00:39:54 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 04:00:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef struct	s_img
 	char		*str;
 }				t_img;
 
+typedef struct s_mouse
+{
+	int			mouse_flag;
+	int			mouse_x;
+	int			mouse_y;
+}				t_mouse;
+
 typedef struct	s_fdf
 {
 	void		*mlx_ptr;
@@ -56,6 +63,8 @@ typedef struct	s_fdf
 	t_img		img;
 	t_mkline	*koord;
 	t_map		map;
+	t_mouse		mouse;
+
 }				t_fdf;
 
 int		map_maker(char *str, t_fdf *fdf, int y_count);
