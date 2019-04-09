@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:38:34 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/09 04:50:23 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/09 04:56:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	upr_l(t_fdf *fdf, int *u, int d, int r_l)
 	*u = *u + 4;
 	(*fdf).img.x = r_l;
 	(*fdf).img.y = d - *u;
-	// mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	// mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, \
-	// r_l, d - *u);
 }
 
 void	rid_u(t_fdf *fdf, int *r, int l, int d_u)
@@ -27,9 +24,6 @@ void	rid_u(t_fdf *fdf, int *r, int l, int d_u)
 	*r = *r + 4;
 	(*fdf).img.x = *r - l;
 	(*fdf).img.y = d_u;
-	// mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	// mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
-	//  *r - l, d_u);
 }
 
 void	dor_l(t_fdf *fdf, int *d, int u, int r_l)
@@ -37,9 +31,6 @@ void	dor_l(t_fdf *fdf, int *d, int u, int r_l)
 	*d = *d + 4;
 	(*fdf).img.x = r_l;
 	(*fdf).img.y = *d - u;
-	// mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	// mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
-	//  r_l, *d - u);
 }
 
 void	led_u(t_fdf *fdf, int *l, int r, int d_u)
@@ -47,9 +38,6 @@ void	led_u(t_fdf *fdf, int *l, int r, int d_u)
 	*l = *l + 4;
 	(*fdf).img.x = r - *l;
 	(*fdf).img.y = d_u;
-	// mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	// mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr,\
-	//  r - *l, d_u);
 }
 
 void	uprld(int key, t_fdf *fdf)
