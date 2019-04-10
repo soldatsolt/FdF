@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 08:26:17 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 09:01:43 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,40 @@ void	make1stgrid(t_fdf *ffdf)
 
 
 
-	// i = 0;
-	// j = 0;
+	i = 0;
+	j = 0;
+	while(j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			if (i == fdf.map.width - 1 && j < fdf.map.height - 1)
+			{
+				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
+				draw_line(fdf);
+			}
+			else if (j == fdf.map.height - 1 && i < fdf.map.width - 1)
+			{
+				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
+				draw_line(fdf);
+			}
+			else if (i < fdf.map.width - 1 && j < fdf.map.height - 1)
+			{
+				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
+				draw_line(fdf);
+				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
+				draw_line(fdf);
+			}
+			
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+
 	// /* рисуем вертикальные линии */
 	// while (i < fdf.map.width)
 	// {
