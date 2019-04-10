@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:41:39 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 07:07:35 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 07:10:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	whitepixel(t_fdf fdf, int x, int y)
 {
-	if (x > 0 && y > 0)
+	if (x > 0 && y > 0 && x < 1920 && y < 1080)
 	{
 		fdf.img.str[7680 * y + x * 4] = 0xFF;
 		fdf.img.str[7680 * y + x * 4 + 1] = 0xFF;
