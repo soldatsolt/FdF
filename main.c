@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 02:13:49 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 04:08:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,11 @@ int		main(int argc,  char **argv)
 	t_fdf	*ffdf;
 	t_fdf	fdf;
 	int		y_count;
+	int 	i;
+	int 	j;
 
+	i = 0;
+	j = 0;
 	if (argc != 2)
 		return (0);
 	y_count = valid(argv[1]);
@@ -103,20 +107,31 @@ int		main(int argc,  char **argv)
 		ft_putstr("error_map\n");
 		return (0);
 	}
-	printf("%G\n", 5474537.346645);
 	ffdf = (t_fdf*)malloc(sizeof(t_fdf));
 	fdf = *ffdf;
 	map_maker(argv[1], &fdf, y_count);
 	printf("map.height = %d map.width = %d map.point[10][18].x = %d map.point[10][18].z = %d map.point[10][18].colour = %d\n", fdf.map.height, fdf.map.width, (fdf.map.point)[10][18].x, (fdf.map.point)[10][18].z, (fdf.map.point)[10][18].colour);
-    fdf.mlx_ptr = mlx_init();
+    while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			printf("%i ", (fdf.map.point)[j][i].z);
+			i++;
+		}
+		printf("\n");
+		i = 0;
+		j++;
+	}
+	fdf.mlx_ptr = mlx_init();
     fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
     fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);
     fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
-	xy1((fdf), 50, 650);
-    xy2((fdf), 1500, 780);
-    draw_line((fdf));
+	// xy1((fdf), 50, 650);
+    // xy2((fdf), 1500, 780);
+    // draw_line((fdf));
+	make1stgrid(&fdf);
     mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
 	mlx_hook(fdf.win_ptr, 6, 0, mouse_move, &fdf);
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
@@ -127,4 +142,3 @@ int		main(int argc,  char **argv)
     mlx_loop(fdf.mlx_ptr);	
 	return (0);
 }
-
