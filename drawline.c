@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:41:39 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 04:02:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 07:07:35 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	whitepixel(t_fdf fdf, int x, int y)
 {
-	fdf.img.str[7680 * y + x * 4] = 0xFF;
-	fdf.img.str[7680 * y + x * 4 + 1] = 0xFF;
-	fdf.img.str[7680 * y + x * 4 + 2] = 0xFF;
+	if (x > 0 && y > 0)
+	{
+		fdf.img.str[7680 * y + x * 4] = 0xFF;
+		fdf.img.str[7680 * y + x * 4 + 1] = 0xFF;
+		fdf.img.str[7680 * y + x * 4 + 2] = 0xFF;
+	}
 }
 
 int		*deltaandsign(t_fdf fdf)
