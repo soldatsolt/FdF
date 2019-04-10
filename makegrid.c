@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 10:26:34 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 10:30:50 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 	}
 }
 
-void	make1stgrid(t_fdf fdf, int i, int j)
+void	makelinksdraw(t_fdf fdf, int i, int j)
 {
-	make1stkoords(fdf, 0, 0);
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
@@ -56,4 +55,10 @@ void	make1stgrid(t_fdf fdf, int i, int j)
 		i = 0;
 		j++;
 	}
+}
+
+void	make1stgrid(t_fdf fdf)
+{
+	make1stkoords(fdf, 0, 0);
+	makelinksdraw(fdf, 0, 0);
 }

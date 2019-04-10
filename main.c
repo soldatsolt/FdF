@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 10:25:08 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 10:30:48 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
 {
 	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
 	ft_bzero((*fdf).img.str, 7680 * 1080);
-	make1stgrid(*fdf, 0, 0);
+	make1stgrid(*fdf);
 	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
 	return (0);
 }
