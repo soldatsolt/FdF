@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 04:16:13 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 04:17:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	make1stgrid(t_fdf *ffdf)
 	while (j < fdf.map.height)
 	{
 		xy1(fdf, 200, 200 + j * 60);
-		xy2(fdf, 200 + fdf.map.height * 60, 200 + j * 60);
+		xy2(fdf, 200 + j * 60, 200 + fdf.map.height * 60);
 		draw_line(fdf);
 		j++;
 	}
