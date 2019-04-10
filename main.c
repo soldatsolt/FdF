@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 06:27:37 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 06:51:33 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		loop_hook(t_fdf *fdf)
 int		deal_key(int key, t_fdf *fdf)
 {
 	mlx_do_key_autorepeaton((*fdf).mlx_ptr);
-	ft_putnbr(key);
-	ft_putchar('\n');
+	// ft_putnbr(key);
+	// ft_putchar('\n');
 	if (key == 53)
 		exit(0);
 	if (key == 124 || key == 123 || key == 125 || key == 126)
@@ -39,13 +39,13 @@ int mouse_move(int x, int y, t_fdf *fdf)
 {
 	if (fdf->mouse.mouse_flag)
 	{
-			(*fdf).img.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
-			(*fdf).img.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
+			(*fdf).map.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
+			(*fdf).map.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
 	}
 	else
 	{
-		(*fdf).img.xx = (*fdf).img.x;
-		(*fdf).img.yy = (*fdf).img.y;
+		(*fdf).img.xx = (*fdf).map.x;
+		(*fdf).img.yy = (*fdf).map.y;
 	}
 	return (0);
 }
