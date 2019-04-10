@@ -6,11 +6,22 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 09:01:43 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 09:11:24 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	draw2dots(t_fdf fdf, t_point dot1, t_point dot2)
+{
+	// t_fdf fdf;
+
+	// fdf = *ffdf;
+	xy1(fdf, dot1.x, dot1.y);
+	xy2(fdf, dot2.x, dot2.y);
+	draw_line(fdf);
+
+}
 
 void	make1stgrid(t_fdf *ffdf)
 {
@@ -40,52 +51,38 @@ void	make1stgrid(t_fdf *ffdf)
 
 	i = 0;
 	j = 0;
-	while(j < fdf.map.height)
+	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
 			if (i == fdf.map.width - 1 && j < fdf.map.height - 1)
 			{
-				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
-				xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
-				draw_line(fdf);
+				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j + 1][i]);
+				// xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				// xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
+				// draw_line(fdf);
 			}
 			else if (j == fdf.map.height - 1 && i < fdf.map.width - 1)
 			{
-				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
-				xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
-				draw_line(fdf);
+				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j][i + 1]);
+				// xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				// xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
+				// draw_line(fdf);
 			}
 			else if (i < fdf.map.width - 1 && j < fdf.map.height - 1)
 			{
-				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
-				xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
-				draw_line(fdf);
-				xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
-				xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
-				draw_line(fdf);
+				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j + 1][i]);
+				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j][i + 1]);
+				// xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				// xy2(fdf, fdf.map.point[j][i + 1].x, fdf.map.point[j][i + 1].y);
+				// draw_line(fdf);
+				// xy1(fdf, fdf.map.point[j][i].x, fdf.map.point[j][i].y);
+				// xy2(fdf, fdf.map.point[j + 1][i].x, fdf.map.point[j + 1][i].y);
+				// draw_line(fdf);
 			}
-			
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-
-	// /* рисуем вертикальные линии */
-	// while (i < fdf.map.width)
-	// {
-	// 	xy1(fdf, fdf.map.x + i * 100, fdf.map.y);
-	// 	xy2(fdf, fdf.map.x + i * 100, fdf.map.y + (fdf.map.height * 100) - 100);
-	// 	draw_line(fdf);
-	// 	i++;
-	// }
-	// /* рисуем горизонтальные линии */
-	// while (j < fdf.map.height)
-	// {
-	// 	xy1(fdf, fdf.map.x, fdf.map.y + j * 100);
-	// 	xy2(fdf, fdf.map.x + (fdf.map.width * 100) - 100, fdf.map.y + j * 100);
-	// 	draw_line(fdf);
-	// 	j++;
-	// }
 }
