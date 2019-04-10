@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 07:56:08 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 08:14:55 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ int		main(int argc,  char **argv)
 	// xy1((fdf), 50, 650);
     // xy2((fdf), 1500, 780);
     // draw_line((fdf));
-	fdf.map.x = 200;
-	fdf.map.y = 200;
+	fdf.map.x = 0;
+	fdf.map.y = 0;
     mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
 	mlx_hook(fdf.win_ptr, 6, 0, mouse_move, &fdf);
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
