@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 06:09:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 10:25:07 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ void	draw_line(t_fdf fdf);
 void	xy1(t_fdf fdf, int x1, int y1);
 void	xy2(t_fdf fdf, int x2, int y2);
 void	uprld(int key, t_fdf *fdf);
-void	make1stgrid(t_fdf *ffdf);
+void	make1stgrid(t_fdf fdf, int i, int j);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 09:21:21 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 10:26:34 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,8 @@ void	draw2dots(t_fdf fdf, t_point dot1, t_point dot2)
 
 }
 
-void	make1stgrid(t_fdf *ffdf)
+void	make1stkoords(t_fdf fdf, int i, int j)
 {
-	t_fdf	fdf;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	fdf = *ffdf;
-
-
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
@@ -42,16 +33,11 @@ void	make1stgrid(t_fdf *ffdf)
 		i = 0;
 		j++;
 	}
+}
 
-
-	//  вот это желательно удалить, но выглядит красиво
-	fdf.map.point[5][5].x = 800;
-	fdf.map.point[5][5].y = 800;
-	// вот это, да
-
-
-	i = 0;
-	j = 0;
+void	make1stgrid(t_fdf fdf, int i, int j)
+{
+	make1stkoords(fdf, 0, 0);
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
