@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 04:08:26 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 06:27:37 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int		cclose(void *param)
 int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
 {
 	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-
-	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, (*fdf).img.x, (*fdf).img.y);
+	ft_bzero((*fdf).img.str, 7680 * 1080);
+	make1stgrid(fdf);
+	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
 	return (0);
 }
 
@@ -97,6 +98,7 @@ int		main(int argc,  char **argv)
 	int 	i;
 	int 	j;
 
+	write(1, "@@\n", 3);
 	i = 0;
 	j = 0;
 	if (argc != 2)
@@ -111,17 +113,6 @@ int		main(int argc,  char **argv)
 	fdf = *ffdf;
 	map_maker(argv[1], &fdf, y_count);
 	printf("map.height = %d map.width = %d map.point[10][18].x = %d map.point[10][18].z = %d map.point[10][18].colour = %d\n", fdf.map.height, fdf.map.width, (fdf.map.point)[10][18].x, (fdf.map.point)[10][18].z, (fdf.map.point)[10][18].colour);
-    while (j < fdf.map.height)
-	{
-		while (i < fdf.map.width)
-		{
-			printf("%i ", (fdf.map.point)[j][i].z);
-			i++;
-		}
-		printf("\n");
-		i = 0;
-		j++;
-	}
 	fdf.mlx_ptr = mlx_init();
     fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
     fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);
@@ -131,7 +122,8 @@ int		main(int argc,  char **argv)
 	// xy1((fdf), 50, 650);
     // xy2((fdf), 1500, 780);
     // draw_line((fdf));
-	make1stgrid(&fdf);
+	fdf.map.x = 200;
+	fdf.map.y = 200;
     mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
 	mlx_hook(fdf.win_ptr, 6, 0, mouse_move, &fdf);
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
@@ -139,6 +131,6 @@ int		main(int argc,  char **argv)
 	mlx_hook(fdf.win_ptr, 17, 0, cclose, &fdf);
 
 	mlx_loop_hook(fdf.mlx_ptr, doloop, &fdf);
-    mlx_loop(fdf.mlx_ptr);	
+    mlx_loop(fdf.mlx_ptr);
 	return (0);
 }

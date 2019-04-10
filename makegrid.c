@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 04:21:47 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 06:16:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,17 @@ void	make1stgrid(t_fdf *ffdf)
 	/* рисуем вертикальные линии */
 	while (i < fdf.map.width)
 	{
-		xy1(fdf, 200 + i * 60, 200);
-		xy2(fdf, 200 + i * 60, 200 + (fdf.map.height * 60) - 60);
+		xy1(fdf, fdf.map.x + i * 60, fdf.map.y);
+		xy2(fdf, fdf.map.x + i * 60, fdf.map.y + (fdf.map.height * 60) - 60);
 		draw_line(fdf);
 		i++;
 	}
 	/* рисуем горизонтальные линии */
 	while (j < fdf.map.height)
 	{
-		xy1(fdf, 200, 200 + j * 60);
-		xy2(fdf, 200 + (fdf.map.width * 60) - 60, 200 + j * 60);
+		xy1(fdf, fdf.map.x, fdf.map.y + j * 60);
+		xy2(fdf, fdf.map.x + (fdf.map.width * 60) - 60, fdf.map.y + j * 60);
 		draw_line(fdf);
 		j++;
 	}
-	
 }

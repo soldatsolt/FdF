@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 04:02:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/10 06:09:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_map
 	t_point		**point;
 	int			height;
 	int			width;
+	int			x;
+	int			y;
 }				t_map;
 
 typedef struct	s_mkline

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/10 04:28:07 by kmills            #+#    #+#             */
+/*   Updated: 2019/04/10 04:28:28 by kmills           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int		val_char(char *str)
@@ -13,11 +25,11 @@ int		val_char(char *str)
 
 int		valid(char *str)
 {
-	int y_count;
-	int fd;
-	int len;
-	int chron_len;
-	char *line;
+	int		y_count;
+	int		fd;
+	int		len;
+	int		chron_len;
+	char	*line;
 
 	len = 0;
 	y_count = 0;
@@ -34,6 +46,6 @@ int		valid(char *str)
 			return (0);
 		++y_count;
 	}
-	close (fd);
+	close(fd);
 	return (y_count);
 }
