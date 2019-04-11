@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:50:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 07:46:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,10 @@ int		main(int argc,  char **argv)
     fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	fdf.proj.f_i = 0;
+	fdf.d3d.ox = 0.5;
+	fdf.d3d.oy = 0.5;
 	fdf.d3d.oz = 0.5;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
-	// xy1((fdf), 50, 650);
-    // xy2((fdf), 1500, 780);
-    // draw_line((fdf));
 	fdf.map.x = 60;
 	fdf.map.y = 40;
     mlx_hook(fdf.win_ptr, 2, 0, deal_key, &(fdf));
