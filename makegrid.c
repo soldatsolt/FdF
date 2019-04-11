@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:19:20 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:45:50 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ void	draw2dots(t_fdf fdf, t_point dot1, t_point dot2)
 
 void	make1stkoords(t_fdf fdf, int i, int j)
 {
-	int p_x;
-	int p_y;
-
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
@@ -36,8 +33,8 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 		i = 0;
 		j++;
 	}
-	if (fdf.proj.f_i == 1)
-	iso(&fdf, 0, 0);
+	// if (fdf.proj.f_i == 1)
+		iso(&fdf, 0, 0);
 }
 
 void	makelinksdraw(t_fdf fdf, int i, int j)

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:19:04 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:45:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ typedef struct	s_proj
 	int			f_i;
 	int			f_p;
 	int			f_3d;
+	int			n;
 }				t_proj;
+
+typedef struct	s_d3d
+{
+	float		oz;
+}				t_d3d;
 
 typedef struct	s_map
 {
@@ -78,6 +84,7 @@ typedef struct	s_fdf
 	t_map		map;
 	t_mouse		mouse;
 	t_proj		proj;
+	t_d3d		d3d;
 
 }				t_fdf;
 

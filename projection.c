@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 06:07:14 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:19:32 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:50:56 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	iso(t_fdf *ffdf, int i, int j)
 				fdf.map.point[j][i].z *= 7;
 			p_x = fdf.map.point[j][i].x;
 			p_y = fdf.map.point[j][i].y;
-			fdf.map.point[j][i].x = (p_x - p_y) * cos(0.523599);
-			fdf.map.point[j][i].y = -fdf.map.point[j][i].z + (p_x + p_y) * sin(0.523599);
+			fdf.map.point[j][i].x = (p_x - p_y) * cos(fdf.d3d.oz);
+			fdf.map.point[j][i].y = -fdf.map.point[j][i].z + \
+			(p_x + p_y) * sin(fdf.d3d.oz);
+			fdf.map.point[j][i].x += 550;
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-	(fdf).proj.f_i = 0;
+	// (fdf).proj.f_i = 0;
 }

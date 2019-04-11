@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:17:28 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:50:55 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ int		loop_hook(t_fdf *fdf)
 
 int		deal_key(int key, t_fdf *fdf)
 {
-	mlx_do_key_autorepeaton((*fdf).mlx_ptr);
 	// ft_putnbr(key);
 	// ft_putchar('\n');
 	if (key == 34 && (*fdf).proj.f_i == 0)
-	{
 		(*fdf).proj.f_i = 1;
-		// iso(fdf, 0, 0);
-	}
+	// if (key == 34 && (*fdf).proj.f_i == 1)
+	// 	(*fdf).proj.f_i = 0;
 	if (key == 53)
 		exit(0);
 	if (key == 124 || key == 123 || key == 125 || key == 126)
@@ -124,6 +122,7 @@ int		main(int argc,  char **argv)
     fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	fdf.proj.f_i = 0;
+	fdf.d3d.oz = 0.5;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	// xy1((fdf), 50, 650);
     // xy2((fdf), 1500, 780);
