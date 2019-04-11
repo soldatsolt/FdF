@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 08:53:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 09:38:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void	xy1(t_fdf fdf, int x1, int y1);
 void	xy2(t_fdf fdf, int x2, int y2);
 void	uprld(int key, t_fdf *fdf);
 void	make1stgrid(t_fdf fdf);
-t_point	iso(t_point dot, float qx, float qz);
+t_point	dimension3(t_point dot, float qx, float qz);
 
 #endif
