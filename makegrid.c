@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 16:15:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:29:35 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 		{
 			fdf.map.point[j][i].x = fdf.map.x + i * 2 * fdf.zoom - 1920 / 2;
 			fdf.map.point[j][i].y = fdf.map.y + j * 2 * fdf.zoom - 1080 / 2;
+			// fdf.map.point[j][i].z *= fdf.zoom;
 			fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
 			(fdf).d3d.ox, (fdf).d3d.oz);
 			i++;

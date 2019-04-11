@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 16:23:33 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:32:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,17 @@ int		deal_key(int key, t_fdf *fdf)
 
 int mouse_move(int x, int y, t_fdf *fdf)
 {
-	if (fdf->mouse.mouse_flag1)
+	if (fdf->mouse.mouse_flag1 && x < 1920 && y < 1080)
 	{
 		(*fdf).map.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
 		(*fdf).map.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
 	}
-	else if (fdf->mouse.mouse_flag2)
+	else if (fdf->mouse.mouse_flag2 && x < 1920 && y < 1080)
 	{
 		(*fdf).d3d.oz = (float)(x - fdf->mouse.mouse_x + (*fdf).img.xxx) / 500;
 		(*fdf).d3d.ox = (float)(y - fdf->mouse.mouse_y + (*fdf).img.yyy) / 500;
 	}
-	else
+	else if (x < 1920 && y < 1080)
 	{
 		(*fdf).img.xx = (*fdf).map.x;
 		(*fdf).img.yy = (*fdf).map.y;
@@ -160,7 +160,7 @@ int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 100, 0xFFFFFF, buffer);
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 120, 0xFFFFFF, "Xo,Yo:");
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 120, 120, 0xFFFFFF, ft_itoa((*fdf).map.point[0][0].x));
-
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 170, 120, 0xFFFFFF, ",");
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 180, 120, 0xFFFFFF, ft_itoa((*fdf).map.point[0][0].y));
 	return (0);
 }
@@ -198,6 +198,8 @@ int		main(int argc,  char **argv)
 	// fdf.d3d.oy = 0.5;
 	fdf.d3d.oz = 0.5;
 	fdf.zoom = 40;
+	fdf.mouse.mouse_flag1 = 0;
+	fdf.mouse.mouse_flag2 = 0;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	fdf.map.x = 60;
 	fdf.map.y = 40;
