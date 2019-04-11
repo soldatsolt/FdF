@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 15:22:46 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:11:47 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_point
 	int			y;
 	int			z;
 	int			colour;
+	int			k;
 }				t_point;
 
 typedef struct	s_proj

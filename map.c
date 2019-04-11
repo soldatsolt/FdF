@@ -60,6 +60,10 @@ int		map_maker(char *str, t_fdf *fdf, int y_count)
 				(fdf->map.point)[y_count][x].x = x;
 				(fdf->map.point)[y_count][x].y = y_count;
 				(fdf->map.point)[y_count][x].z = ft_atoi(num[x]);
+				if ((fdf->map.point)[y_count][x].z)
+					(fdf->map.point)[y_count][x].k = 1;
+				else
+					(fdf->map.point)[y_count][x].k = 0;
 				(fdf->map.point)[y_count][x].colour = receive_colour(num[x]);
 				++x;
 		}
