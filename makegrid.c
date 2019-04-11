@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 10:30:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:02:10 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,27 @@ void	draw2dots(t_fdf fdf, t_point dot1, t_point dot2)
 
 void	make1stkoords(t_fdf fdf, int i, int j)
 {
+	int p_x;
+	int p_y;
+
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
-			fdf.map.point[j][i].x = fdf.map.x + i * 100;
-			fdf.map.point[j][i].y = fdf.map.y + j * 100;
+			fdf.map.point[j][i].x = fdf.map.x + i * 80;
+			fdf.map.point[j][i].y = fdf.map.y + j * 80;
+			if (fdf.map.point[j][i].z == 10)
+				fdf.map.point[j][i].z *= 7;
+			p_x = fdf.map.point[j][i].x;
+			p_y = fdf.map.point[j][i].y;
+			fdf.map.point[j][i].x = (p_x - p_y) * cos(0.523599);
+			fdf.map.point[j][i].y = -fdf.map.point[j][i].z + (p_x + p_y) * sin(0.523599);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
+
 }
 
 void	makelinksdraw(t_fdf fdf, int i, int j)
