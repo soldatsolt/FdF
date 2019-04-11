@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 05:21:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:19:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef struct	s_point
 	int			z;
 	int			colour;
 }				t_point;
+
+typedef struct	s_proj
+{
+	int			f_i;
+	int			f_p;
+	int			f_3d;
+}				t_proj;
 
 typedef struct	s_map
 {
@@ -70,6 +77,7 @@ typedef struct	s_fdf
 	t_mkline	*koord;
 	t_map		map;
 	t_mouse		mouse;
+	t_proj		proj;
 
 }				t_fdf;
 
@@ -86,5 +94,6 @@ void	xy1(t_fdf fdf, int x1, int y1);
 void	xy2(t_fdf fdf, int x2, int y2);
 void	uprld(int key, t_fdf *fdf);
 void	make1stgrid(t_fdf fdf);
+void	iso(t_fdf *ffdf, int i, int j);
 
 #endif

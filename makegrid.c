@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:02:10 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 06:19:20 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,13 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 		{
 			fdf.map.point[j][i].x = fdf.map.x + i * 80;
 			fdf.map.point[j][i].y = fdf.map.y + j * 80;
-			if (fdf.map.point[j][i].z == 10)
-				fdf.map.point[j][i].z *= 7;
-			p_x = fdf.map.point[j][i].x;
-			p_y = fdf.map.point[j][i].y;
-			fdf.map.point[j][i].x = (p_x - p_y) * cos(0.523599);
-			fdf.map.point[j][i].y = -fdf.map.point[j][i].z + (p_x + p_y) * sin(0.523599);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-
+	if (fdf.proj.f_i == 1)
+	iso(&fdf, 0, 0);
 }
 
 void	makelinksdraw(t_fdf fdf, int i, int j)
