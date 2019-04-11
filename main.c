@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 11:06:46 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:36:50 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 53)
 		exit(0);
 	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
-	key == 0 || key == 1 || key == 2)
+	key == 0 || key == 1 || key == 2 || key == 69 || key == 78)
 		uprld(key, fdf);
 	return (0);
 }
@@ -135,6 +135,7 @@ int		main(int argc,  char **argv)
 	fdf.d3d.ox = 0.5;
 	// fdf.d3d.oy = 0.5;
 	fdf.d3d.oz = 0.5;
+	fdf.zoom = 10;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	fdf.map.x = 60;
 	fdf.map.y = 40;
