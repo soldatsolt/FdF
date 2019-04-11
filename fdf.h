@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 09:38:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 09:58:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_proj
 typedef struct	s_d3d
 {
 	float		ox;
-	float		oy;
+	// float		oy;
 	float		oz;
 }				t_d3d;
 

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 07:46:52 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 10:19:08 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int mouse_move(int x, int y, t_fdf *fdf)
 		(*fdf).img.xx = (*fdf).map.x;
 		(*fdf).img.yy = (*fdf).map.y;
 	}
+	if (fdf->mouse.mouse_flag)
+		printf("X = %i, Y = %i\n", x, y);
 	return (0);
 }
 
@@ -86,10 +88,17 @@ int		cclose(void *param)
 
 int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
 {
+	char buffer[100];
+	sprintf(buffer, "%10.3f", (*fdf).d3d.ox);
 	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
 	ft_bzero((*fdf).img.str, 7680 * 1080);
 	make1stgrid(*fdf);
 	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 80, 0xFFFFFF, "OX ROT:");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 80, 0xFFFFFF, buffer);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 100, 0xFFFFFF, "OZ ROT:");
+	sprintf(buffer, "%10.3f", (*fdf).d3d.oz);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 100, 0xFFFFFF, buffer);
 	return (0);
 }
 
@@ -123,7 +132,7 @@ int		main(int argc,  char **argv)
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	fdf.proj.f_i = 0;
 	fdf.d3d.ox = 0.5;
-	fdf.d3d.oy = 0.5;
+	// fdf.d3d.oy = 0.5;
 	fdf.d3d.oz = 0.5;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
 	fdf.map.x = 60;
@@ -133,7 +142,6 @@ int		main(int argc,  char **argv)
     mlx_hook(fdf.win_ptr, 4, 0, deal_mouse, &fdf);
 	mlx_hook(fdf.win_ptr, 5, 0, mouse_release, &fdf);
 	mlx_hook(fdf.win_ptr, 17, 0, cclose, &fdf);
-
 	mlx_loop_hook(fdf.mlx_ptr, doloop, &fdf);
     mlx_loop(fdf.mlx_ptr);
 	return (0);
