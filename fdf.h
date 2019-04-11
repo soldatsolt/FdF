@@ -47,6 +47,8 @@ typedef struct	s_map
 	int			width;
 	int			x;
 	int			y;
+	int			min;
+	int			max;
 }				t_map;
 
 typedef struct	s_mkline
@@ -100,9 +102,9 @@ void	*img_ptr;
 int		deal_key(int key, t_fdf *fdf);
 int		expose_hook(void *param);
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf);
-void	whitepixel(t_fdf fdf, int x, int y);
+void	whitepixel(t_fdf fdf, int x, int y, int colour);
 int		*deltaandsign(t_fdf fdf);
-void	draw_line(t_fdf fdf);
+void	draw_line(t_fdf fdf, int colour1, int colour2);
 void	xy1(t_fdf fdf, int x1, int y1);
 void	xy2(t_fdf fdf, int x2, int y2);
 void	uprld(int key, t_fdf *fdf);

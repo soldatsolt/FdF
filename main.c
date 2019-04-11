@@ -183,7 +183,7 @@ int		main(int argc,  char **argv)
 	ffdf = (t_fdf*)malloc(sizeof(t_fdf));
 	fdf = *ffdf;
 	map_maker(argv[1], &fdf, y_count);
-	printf(" colour = %d\n", fdf.map.point[2][2].colour);
+	printf(" colour = %d min = %d max = %d\n", fdf.map.point[2][2].colour, fdf.map.min, fdf.map.max);
 	fdf.mlx_ptr = mlx_init();
     fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
     fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);

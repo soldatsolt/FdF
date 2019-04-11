@@ -12,14 +12,12 @@
 
 #include "fdf.h"
 
-void	whitepixel(t_fdf fdf, int x, int y)
+void	whitepixel(t_fdf fdf, int x, int y, int colour)
 {
+	int	*str;
+	str = (int*)fdf.img.str;
 	if (x > 0 && y > 0 && x < 1920 && y < 1080)
-	{
-		fdf.img.str[7680 * y + x * 4] = 0xFF;
-		fdf.img.str[7680 * y + x * 4 + 1] = 0xFF;
-		fdf.img.str[7680 * y + x * 4 + 2] = 0xFF;
-	}
+		str[7680/4 * y + x] = colour << 4;
 }
 
 int		*deltaandsign(t_fdf fdf)
@@ -40,7 +38,7 @@ int		*deltaandsign(t_fdf fdf)
 	return (rez);
 }
 
-void	draw_line(t_fdf fdf)
+void	draw_line(t_fdf fdf, int colour1, int colour2)
 {
 	int		*ds;
 	int		error;
@@ -48,10 +46,10 @@ void	draw_line(t_fdf fdf)
 
 	ds = deltaandsign(fdf);
 	error = ds[0] - ds[1];
-	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2);
+	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2, colour2);
 	while (fdf.koord->x1 != fdf.koord->x2 || fdf.koord->y1 != fdf.koord->y2)
 	{
-		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1);
+		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1, colour1);
 		error2 = error * 2;
 		if (error2 > -ds[1])
 		{

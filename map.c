@@ -1,5 +1,47 @@
 #include "fdf.h"
 
+int get_light(int start, int end, double percentage)
+{
+    return ((int)((1 - percentage) * start + percentage * end));
+}
+
+double percent(int start, int end, int current)
+{
+    double placement;
+    double distance;
+
+    placement = current - start;
+    distance = end - start;
+    return ((distance == 0) ? 1.0 : (placement / distance));
+}
+
+int		find_min_max(t_point *point, int value, int flag)
+{
+	if (value > point->y)
+		point->y = value;
+	if (value < point->x)
+		point->x = value;
+	if (flag == 1)
+		return (point->x);
+	if (flag == 2)
+		return (point->y);
+	return (0);
+}
+
+int		get_colour(t_fdf *fdf, int x, int y)
+{
+	double	percentage;
+	int	red;
+	int	green;
+	int	blue;
+
+	percentage = percent(fdf->map.min, fdf->map.max, fdf->map.point[y][x].z);
+	red = get_light((0x009999 >> 16) & 0xFF, (0xFFFFFF >> 16) & 0xFF, percentage);
+	green = get_light((0x009999 >> 8) & 0xFF, (0xFFFFFF >> 8) & 0xFF, percentage);
+	blue = get_light(0x009999 & 0xFF, 0xFFFFFF & 0xFF, percentage);
+	return ((red << 16) | (green << 8) | blue);
+}
+
 int		receive_colour(char *str)
 {
 	int i;
@@ -8,9 +50,9 @@ int		receive_colour(char *str)
 	while (str[i] && ft_isdigit(str[i]))
 		++i;
 	if (!str[i])
-		return (0xff0000);
-	else if (str[i] == ',' && str[i + 1] && str[i + 2] && str[i + 1] == '0' && str[i + 2] == 'x')
-		return (ft_atoi_base(str + i, 16));
+		return (268435455);
+	if (str[i] == ',' && str[i + 1] && str[i + 2] && str[i + 1] == '0' && str[i + 2] == 'x')
+		return (ft_atoi_base(str + i + 3, 16));
 	return (-1);
 }
 
@@ -35,14 +77,40 @@ int		ft_num_counter(char *str)
 	return (num);
 }
 
+void		first_colour(t_fdf *fdf)
+{
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
+	while (y < fdf->map.height)
+	{
+		x = 0;
+		while (x < fdf->map.width)
+		{
+			if (fdf->map.point[y][x].colour == 268435455)
+			{
+				fdf->map.point[y][x].colour = get_colour(fdf, x, y);
+			}
+			++x;
+		}
+		++y;
+	}
+}
+
 int		map_maker(char *str, t_fdf *fdf, int y_count)
 {
+	t_point *poin;
 	int  fd;
 	int  x;
 	int  len;
 	char *line;
 	char **num;
 
+	poin = (t_point*)malloc(sizeof(t_point));
+	poin->x = 2147483647;
+	poin->y = -2147483648;
 	fd = open(str,  O_RDONLY);
 	fdf->map.point = (t_point**)malloc(sizeof(t_point*) * y_count);
 	fdf->map.height = y_count;
@@ -60,11 +128,16 @@ int		map_maker(char *str, t_fdf *fdf, int y_count)
 				(fdf->map.point)[y_count][x].x = x;
 				(fdf->map.point)[y_count][x].y = y_count;
 				(fdf->map.point)[y_count][x].z = ft_atoi(num[x]);
-				(fdf->map.point)[y_count][x].colour = receive_colour(num[x]);
+				find_min_max(poin, fdf->map.point[y_count][x].z, 0);
+				fdf->map.point[y_count][x].colour = receive_colour(num[x]);
 				++x;
 		}
 		fdf->map.width = x;
 		y_count++;
 	}
+	fdf->map.min = find_min_max(poin, fdf->map.point[--y_count][--x].z, 1);
+	fdf->map.max = find_min_max(poin, fdf->map.point[--y_count][--x].z, 2);
+	free(poin);
+	first_colour(fdf);
 	return (1);
 }

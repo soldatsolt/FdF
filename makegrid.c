@@ -12,11 +12,11 @@
 
 #include "fdf.h"
 
-void	draw2dots(t_fdf fdf, t_point dot1, t_point dot2)
+void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 {
-	xy1(fdf, dot1.x, dot1.y);
-	xy2(fdf, dot2.x, dot2.y);
-	draw_line(fdf);
+	xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
+	xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
+	draw_line(fdf, fdf.map.point[j1][i1].colour, fdf.map.point[j2][i2].colour);
 
 }
 
@@ -62,13 +62,13 @@ void	makelinksdraw(t_fdf fdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (i == fdf.map.width - 1 && j < fdf.map.height - 1)
-				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j + 1][i]);
+				draw2dots(fdf, j, i, j + 1, i);
 			else if (j == fdf.map.height - 1 && i < fdf.map.width - 1)
-				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j][i + 1]);
+				draw2dots(fdf, j, i, j, i + 1);
 			else if (i < fdf.map.width - 1 && j < fdf.map.height - 1)
 			{
-				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j + 1][i]);
-				draw2dots(fdf, fdf.map.point[j][i], fdf.map.point[j][i + 1]);
+				draw2dots(fdf, j, i, j + 1, i);
+				draw2dots(fdf, j, i, j, i + 1);
 			}
 			i++;
 		}
