@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 10:19:08 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:06:46 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int		deal_key(int key, t_fdf *fdf)
 	// 	(*fdf).proj.f_i = 0;
 	if (key == 53)
 		exit(0);
-	if (key == 124 || key == 123 || key == 125 || key == 126)
+	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
+	key == 0 || key == 1 || key == 2)
 		uprld(key, fdf);
 	return (0);
 }
@@ -50,8 +51,8 @@ int mouse_move(int x, int y, t_fdf *fdf)
 		(*fdf).img.xx = (*fdf).map.x;
 		(*fdf).img.yy = (*fdf).map.y;
 	}
-	if (fdf->mouse.mouse_flag)
-		printf("X = %i, Y = %i\n", x, y);
+	// if (fdf->mouse.mouse_flag)
+	// 	printf("X = %i, Y = %i\n", x, y);
 	return (0);
 }
 
