@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 06:07:14 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 08:09:41 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 08:13:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	iso(t_fdf *ffdf, int i, int j)
 			// fdf.map.point[j][i].x = (p_x - p_y) * cos(0.523599);
 			// fdf.map.point[j][i].y = -p_z + (p_x + p_y) * sin(0.523599);
 			// fdf.map.point[j][i].x += 550;
-			fdf.map.point[j][i].y = p_y * cos((fdf).d3d.oz) - p_z * sin((fdf).d3d.oz);
+			fdf.map.point[j][i].x = p_x * cos((fdf).d3d.oz) - p_y * sin((fdf).d3d.oz);
+			fdf.map.point[j][i].y = p_x * sin((fdf).d3d.oz) + p_y * cos((fdf).d3d.oz);
+			p_y = fdf.map.point[j][i].y;
+			fdf.map.point[j][i].y = p_y * cos((fdf).d3d.ox) - p_z * sin((fdf).d3d.ox);
 			// fdf.map.point[j][i].z = -p_y * sin(0.523599) + p_z * cos(0.523599);
 			i++;
 		}
