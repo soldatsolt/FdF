@@ -6,41 +6,33 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 06:07:14 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 08:13:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 08:54:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	iso(t_fdf *ffdf, int i, int j)
+t_point	iso(t_point dot, float qx, float qz)
 {
-	t_fdf	fdf;
 	int		p_x;
 	int		p_y;
 	int		p_z;
+	// t_point	dot;
 
-	fdf = *ffdf;
-	while (j < fdf.map.height)
-	{
-		while (i < fdf.map.width)
-		{
-			if (fdf.map.point[j][i].z == 10)
-				fdf.map.point[j][i].z *= 7;
-			p_x = fdf.map.point[j][i].x;
-			p_y = fdf.map.point[j][i].y;
-			p_z = fdf.map.point[j][i].z;
+	// dot = *ddot;
+
+	if (dot.z == 10)
+		dot.z *= 7;
+	p_x = dot.x;
+	p_y = dot.y;
+	p_z = dot.z;
 			// fdf.map.point[j][i].x = (p_x - p_y) * cos(0.523599);
 			// fdf.map.point[j][i].y = -p_z + (p_x + p_y) * sin(0.523599);
 			// fdf.map.point[j][i].x += 550;
-			fdf.map.point[j][i].x = p_x * cos((fdf).d3d.oz) - p_y * sin((fdf).d3d.oz);
-			fdf.map.point[j][i].y = p_x * sin((fdf).d3d.oz) + p_y * cos((fdf).d3d.oz);
-			p_y = fdf.map.point[j][i].y;
-			fdf.map.point[j][i].y = p_y * cos((fdf).d3d.ox) - p_z * sin((fdf).d3d.ox);
+	dot.x = p_x * cos(qz) - p_y * sin(qz);
+	dot.y = p_x * sin(qz) + p_y * cos(qz);
+	p_y = dot.y;
+	dot.y = p_y * cos(qx) - p_z * sin(qx);
 			// fdf.map.point[j][i].z = -p_y * sin(0.523599) + p_z * cos(0.523599);
-			i++;
-		}
-		i = 0;
-		j++;
-	}
-	// (fdf).proj.f_i = 0;
+	return (dot);
 }

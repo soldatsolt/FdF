@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 06:45:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 08:54:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 		{
 			fdf.map.point[j][i].x = fdf.map.x + i * 80;
 			fdf.map.point[j][i].y = fdf.map.y + j * 80;
+			fdf.map.point[j][i] = iso((fdf.map.point[j][i]), (fdf).d3d.ox, (fdf).d3d.oz);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
 	// if (fdf.proj.f_i == 1)
-		iso(&fdf, 0, 0);
+		
 }
 
 void	makelinksdraw(t_fdf fdf, int i, int j)
