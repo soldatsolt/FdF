@@ -37,13 +37,13 @@ int		valid(char *str)
 	fd = open(str, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-		len = ft_strlen(line);
-		if (chron_len == 0)
-			chron_len = len;
-		if (len != chron_len)
-			return (0);
-		if (!val_char(line))
-			return (0);
+//		len = ft_strlen(line);
+//		if (chron_len == 0)
+//			chron_len = len;
+//		if (len != chron_len)
+//			return (0);
+//		if (!val_char(line))
+//			return (0);
 		++y_count;
 	}
 	close(fd);

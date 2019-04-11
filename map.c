@@ -1,5 +1,19 @@
 #include "fdf.h"
 
+int		receive_colour(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && ft_isdigit(str[i]))
+		++i;
+	if (!str[i])
+		return (0xff0000);
+	else if (str[i] == ',' && str[i + 1] && str[i + 2] && str[i + 1] == '0' && str[i + 2] == 'x')
+		return (ft_atoi_base(str + i, 16));
+	return (-1);
+}
+
 int		ft_num_counter(char *str)
 {
 	int num;
@@ -46,7 +60,7 @@ int		map_maker(char *str, t_fdf *fdf, int y_count)
 				(fdf->map.point)[y_count][x].x = x;
 				(fdf->map.point)[y_count][x].y = y_count;
 				(fdf->map.point)[y_count][x].z = ft_atoi(num[x]);
-				(fdf->map.point)[y_count][x].colour = 16777215;
+				(fdf->map.point)[y_count][x].colour = receive_colour(num[x]);
 				++x;
 		}
 		fdf->map.width = x;
