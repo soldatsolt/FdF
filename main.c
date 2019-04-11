@@ -72,9 +72,9 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
 	key == 0 || key == 1 || key == 2 || key == 69 || key == 78)
 		uprld(key, fdf);
-	if (key == 67)
+	if (key == 7)
 		uvel_z(fdf, 0, 0);
-	if (key == 75)
+	if (key == 6)
 		umen_z(fdf, 0, 0);
 	return (0);
 }
@@ -187,7 +187,6 @@ int		main(int argc,  char **argv)
 	ffdf = (t_fdf*)malloc(sizeof(t_fdf));
 	fdf = *ffdf;
 	map_maker(argv[1], &fdf, y_count);
-	printf(" colour = %d min = %d max = %d\n", fdf.map.point[2][2].colour, fdf.map.min, fdf.map.max);
 	fdf.mlx_ptr = mlx_init();
     fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, 1920, 1080, "test");
     fdf.img_ptr = mlx_new_image(fdf.mlx_ptr, 1920, 1080);

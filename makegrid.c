@@ -16,8 +16,7 @@ void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 {
 	xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
 	xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
-	draw_line(fdf, fdf.map.point[j1][i1].colour, fdf.map.point[j2][i2].colour);
-
+	draw_line(fdf, (int)fdf.map.point[j1][i1].colour, (int)fdf.map.point[j2][i2].colour);
 }
 
 t_point	dimension3(t_point dot, float qx, float qz)

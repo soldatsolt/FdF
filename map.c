@@ -28,17 +28,37 @@ int		find_min_max(t_point *point, int value, int flag)
 	return (0);
 }
 
-int		get_colour(t_fdf *fdf, int x, int y)
+int get_color(int error2, int *ds, t_mkline example, int x, int y, int colour1, int colour2)
+{
+    int     red;
+    int     green;
+    int     blue;
+    double  percentage;
+
+    if (colour1 == colour2)
+        return (colour1);
+    if (ds[0] > ds[1])		//PIZDEZ
+        percentage = percent(example.x1, example.x2, x);
+    else
+        percentage = percent(example.y1, example.y2, y);
+    red = get_light((colour1 >> 16) & 0xFF, (colour2 >> 16) & 0xFF, percentage);
+    green = get_light((colour1 >> 8) & 0xFF, (colour2 >> 8) & 0xFF, percentage);
+    blue = get_light(colour1 & 0xFF, colour2 & 0xFF, percentage);
+//	printf("x = %d y = %d, percentage = %f ex->x1 = %d ex->x2 = %d ex->y1 = %d ex->x2 = %d\n", x, y, percentage, example.x1, example.x2, example.y1, example.y2);
+    return ((red << 16) | (green << 8) | blue);
+}
+
+int		get_init_colour(int min, int max, int colour1, int colour2, int z)
 {
 	double	percentage;
 	int	red;
 	int	green;
 	int	blue;
 
-	percentage = percent(fdf->map.min, fdf->map.max, fdf->map.point[y][x].z);
-	red = get_light((0x009999 >> 16) & 0xFF, (0xFFFFFF >> 16) & 0xFF, percentage);
-	green = get_light((0x009999 >> 8) & 0xFF, (0xFFFFFF >> 8) & 0xFF, percentage);
-	blue = get_light(0x009999 & 0xFF, 0xFFFFFF & 0xFF, percentage);
+	percentage = percent(min, max, z);
+	red = get_light((colour1 >> 16) & 0xFF, (colour2 >> 16) & 0xFF, percentage);
+	green = get_light((colour1 >> 8) & 0xFF, (colour2 >> 8) & 0xFF, percentage);
+	blue = get_light(colour1 & 0xFF, colour2 & 0xFF, percentage);
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -91,7 +111,7 @@ void		first_colour(t_fdf *fdf)
 		{
 			if (fdf->map.point[y][x].colour == 268435455)
 			{
-				fdf->map.point[y][x].colour = get_colour(fdf, x, y);
+				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0x761313, 0xCCA8A8, fdf->map.point[y][x].z);
 			}
 			++x;
 		}
