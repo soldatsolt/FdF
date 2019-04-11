@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 15:30:10 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:46:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,42 @@ int		loop_hook(t_fdf *fdf)
 	return (0);
 }
 
+void	uvel_z(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			if (fdf.map.point[j][i].z)
+				fdf.map.point[j][i].z += 14;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
+
+void	umen_z(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			if (fdf.map.point[j][i].z)
+				fdf.map.point[j][i].z -= 14;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
+
 int		deal_key(int key, t_fdf *fdf)
 {
 	// ft_putnbr(key);
@@ -36,6 +72,10 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
 	key == 0 || key == 1 || key == 2 || key == 69 || key == 78)
 		uprld(key, fdf);
+	if (key == 67)
+		uvel_z(fdf, 0, 0);
+	if (key == 75)
+		umen_z(fdf, 0, 0);
 	return (0);
 }
 

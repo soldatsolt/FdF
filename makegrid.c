@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 15:08:54 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:46:46 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_point	dimension3(t_point dot, float qx, float qz)
 	int		p_y;
 	int		p_z;
 
-	if (dot.z == 10)
-		dot.z *= 7;
+	// if (dot.z == 10)
+	// 	dot.z *= 7;
 	p_x = dot.x;
 	p_y = dot.y;
 	p_z = dot.z;
