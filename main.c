@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 11:36:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:46:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,42 @@ int		loop_hook(t_fdf *fdf)
 	return (0);
 }
 
+void	uvel_z(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			if (fdf.map.point[j][i].z)
+				fdf.map.point[j][i].z += 14;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
+
+void	umen_z(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			if (fdf.map.point[j][i].z)
+				fdf.map.point[j][i].z -= 14;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
+
 int		deal_key(int key, t_fdf *fdf)
 {
 	// ft_putnbr(key);
@@ -36,20 +72,31 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
 	key == 0 || key == 1 || key == 2 || key == 69 || key == 78)
 		uprld(key, fdf);
+	if (key == 67)
+		uvel_z(fdf, 0, 0);
+	if (key == 75)
+		umen_z(fdf, 0, 0);
 	return (0);
 }
 
 int mouse_move(int x, int y, t_fdf *fdf)
 {
-	if (fdf->mouse.mouse_flag)
+	if (fdf->mouse.mouse_flag1)
 	{
-			(*fdf).map.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
-			(*fdf).map.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
+		(*fdf).map.x = x - fdf->mouse.mouse_x + (*fdf).img.xx;
+		(*fdf).map.y = y - fdf->mouse.mouse_y + (*fdf).img.yy;
+	}
+	else if (fdf->mouse.mouse_flag2)
+	{
+		(*fdf).d3d.oz = (float)(x - fdf->mouse.mouse_x + (*fdf).img.xxx) / 500;
+		(*fdf).d3d.ox = (float)(y - fdf->mouse.mouse_y + (*fdf).img.yyy) / 500;
 	}
 	else
 	{
 		(*fdf).img.xx = (*fdf).map.x;
 		(*fdf).img.yy = (*fdf).map.y;
+		(*fdf).img.xxx = (*fdf).d3d.oz * 500;
+		(*fdf).img.yyy = (*fdf).d3d.ox * 500;
 	}
 	// if (fdf->mouse.mouse_flag)
 	// 	printf("X = %i, Y = %i\n", x, y);
@@ -63,9 +110,19 @@ int		expose_hook(void *param)
 
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
+	if (mouse == 4)
+		(*fdf).zoom += 1;
+	if (mouse == 5)
+		(*fdf).zoom -= 1;
 	if (mouse == 1)
 	{
-		fdf->mouse.mouse_flag = 1;
+		fdf->mouse.mouse_flag1 = 1;
+		fdf->mouse.mouse_x = x;
+		fdf->mouse.mouse_y = y;
+	}
+	if (mouse == 2)
+	{
+		fdf->mouse.mouse_flag2 = 1;
 		fdf->mouse.mouse_x = x;
 		fdf->mouse.mouse_y = y;
 	}
@@ -77,7 +134,8 @@ int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 
 int mouse_release(int button, int x, int y, t_fdf *fdf)
 {
-	fdf->mouse.mouse_flag = 0;
+	fdf->mouse.mouse_flag1 = 0;
+	fdf->mouse.mouse_flag2 = 0;
 	return (0);
 }
 

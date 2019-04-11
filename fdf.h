@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 11:33:24 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:22:46 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ typedef struct	s_img
 	int			y;
 	int			xx;
 	int			yy;
+	int			xxx;
+	int			yyy;
 }				t_img;
 
 typedef struct s_mouse
 {
-	int			mouse_flag;
+	int			mouse_flag1;
+	int			mouse_flag2;
 	int			mouse_x;
 	int			mouse_y;
 }				t_mouse;
