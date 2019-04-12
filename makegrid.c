@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 13:21:23 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 14:54:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,23 @@ t_point	dimension3(t_point dot, float qx, float qz)
 	return (dot);
 }
 
+void	makefongray(t_fdf fdf)
+{
+	int i;
+
+	i = 0;
+	while (i < 7680 * 1080)
+	{
+		fdf.img.str[i] = 19;
+		fdf.img.str[i + 1] = 17;
+		fdf.img.str[i + 2] = 13;
+		i += 4;
+	}
+}
+
 void	make1stkoords(t_fdf fdf, int i, int j)
 {
+	makefongray(fdf);
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)

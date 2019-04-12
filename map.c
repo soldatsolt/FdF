@@ -110,7 +110,7 @@ void		first_colour(t_fdf *fdf)
 		{
 			if (fdf->map.point[y][x].colour == 268435455)
 			{
-				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0xa70017, 0xbd00, fdf->map.point[y][x].z);
+				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0xab1f3c, 0x4332ce, fdf->map.point[y][x].z);
 			}
 			++x;
 		}
