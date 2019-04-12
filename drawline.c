@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:41:39 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/10 07:10:59 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 13:09:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,19 @@ void	draw_line(t_fdf fdf, int colour1, int colour2)
 
 void	xy1(t_fdf fdf, int x1, int y1)
 {
-	fdf.koord->x1 = x1;
-	fdf.koord->y1 = y1;
+	if (x1 < 1920 && y1 < 1080)
+	{
+		fdf.koord->x1 = x1;
+		fdf.koord->y1 = y1;
+	}
 }
 
 void	xy2(t_fdf fdf, int x2, int y2)
 {
-	fdf.koord->x2 = x2;
-	fdf.koord->y2 = y2;
+	if (x2 < 1920 && y2 < 1080)
+	{
+		fdf.koord->x2 = x2;
+		fdf.koord->y2 = y2;
+	}
 }
 

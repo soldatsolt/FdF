@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:38:34 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 15:16:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 12:04:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	uprld(int key, t_fdf *fdf)
 		(*fdf).d3d.ox += 0.05;
 	if (key == 123)
 		(*fdf).d3d.oz -= 0.05;
+	if (key == 12)
+		(*fdf).d3d.oy += 0.05;
+	if (key == 14)
+		(*fdf).d3d.oy -= 0.05;
 	if (key == 0)
 		(*fdf).map.x -= 45;
 	if (key == 1)

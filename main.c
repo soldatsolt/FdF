@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/11 16:32:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 12:41:39 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int		deal_key(int key, t_fdf *fdf)
 	if (key == 53)
 		exit(0);
 	if (key == 124 || key == 123 || key == 125 || key == 126 || key == 13 || \
-	key == 0 || key == 1 || key == 2 || key == 69 || key == 78)
+	key == 0 || key == 1 || key == 2 || key == 69 || key == 78 || key == 12 \
+	|| key == 14)
 		uprld(key, fdf);
 	if (key == 7)
 		uvel_z(fdf, 0, 0);
@@ -145,23 +146,36 @@ int		cclose(void *param)
 	return (0);
 }
 
-int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
+void	vivod_strs_on_screen(t_fdf *fdf)
 {
 	char buffer[100];
 	sprintf(buffer, "%10.3f", (*fdf).d3d.ox);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 80, 0xFFFFFF, "OX ROT:");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 80, 0xFFFFFF, buffer);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 100, 0xFFFFFF, "OY ROT:");
+	sprintf(buffer, "%10.3f", (*fdf).d3d.oy);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 100, 0xFFFFFF, buffer);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 120, 0xFFFFFF, "OZ ROT:");
+	sprintf(buffer, "%10.3f", (*fdf).d3d.oz);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 120, 0xFFFFFF, buffer);
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 140, 0xFFFFFF, "Xo,Yo:");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 120, 140, 0xFFFFFF, \
+	ft_itoa((*fdf).map.point[0][0].x));
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 170, 140, 0xFFFFFF, ",");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 180, 140, 0xFFFFFF, \
+	ft_itoa((*fdf).map.point[0][0].y));
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 180, 0xFFFFFF, "ZOOM:");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 90, 180, 0xFFFFFF, \
+	ft_itoa((*fdf).zoom));
+}
+
+int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
+{
 	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
 	ft_bzero((*fdf).img.str, 7680 * 1080);
 	make1stgrid(*fdf);
 	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 80, 0xFFFFFF, "OX ROT:");
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 80, 0xFFFFFF, buffer);
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 100, 0xFFFFFF, "OZ ROT:");
-	sprintf(buffer, "%10.3f", (*fdf).d3d.oz);
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 70, 100, 0xFFFFFF, buffer);
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 120, 0xFFFFFF, "Xo,Yo:");
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 120, 120, 0xFFFFFF, ft_itoa((*fdf).map.point[0][0].x));
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 170, 120, 0xFFFFFF, ",");
-	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 180, 120, 0xFFFFFF, ft_itoa((*fdf).map.point[0][0].y));
+	vivod_strs_on_screen(fdf);
 	return (0);
 }
 
@@ -193,9 +207,9 @@ int		main(int argc,  char **argv)
     fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	fdf.proj.f_i = 0;
-	fdf.d3d.ox = 0.5;
-	// fdf.d3d.oy = 0.5;
-	fdf.d3d.oz = 0.5;
+	fdf.d3d.ox = 0;
+	fdf.d3d.oy = 0;
+	fdf.d3d.oz = 0;
 	fdf.zoom = 40;
 	fdf.mouse.mouse_flag1 = 0;
 	fdf.mouse.mouse_flag2 = 0;
