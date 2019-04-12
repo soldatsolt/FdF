@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 18:41:35 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 19:04:33 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	uvel_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				(*ffdf).map.point[j][i].k *= (*ffdf).nb;
+				(*ffdf).map.point[j][i].k *= 1.2;
 			if (!fdf.map.point[j][i].k && fdf.map.point[j][i].kz)
 				(*ffdf).map.point[j][i].k = (*ffdf).map.point[j][i].kz;
 			i++;
@@ -57,7 +57,7 @@ void	umen_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				(*ffdf).map.point[j][i].k /= (*ffdf).nm;
+				(*ffdf).map.point[j][i].k /= 1.2;
 			i++;
 		}
 		i = 0;

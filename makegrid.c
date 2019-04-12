@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 18:49:20 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 19:03:55 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int		raduga(t_point *dot)
 {
+	static long long int i = 0;
 	int color;
 
-	(*dot).colour = (*dot).colour + 1;
+	i += 1;
+	if (i % 10 == 0)
+		(*dot).colour = (*dot).colour + 1;
 	color = (*dot).colour;
 	return (color);
 }
