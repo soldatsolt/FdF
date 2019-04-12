@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 14:56:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:14:07 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,20 @@ void	makefongray(t_fdf fdf)
 	}
 }
 
+void	iso(t_point dot)
+{
+	int		p_x;
+	int		p_y;
+	int		p_z;
+
+	dot.x = (dot.x - dot.y) * cos(0.523599);
+	dot.y = -dot.z + (dot.x + dot.y) * sin(0.523599);
+}
+
 void	make1stkoords(t_fdf fdf, int i, int j)
 {
-	makefongray(fdf);
+	if (fdf.proj.f_i)
+		ft_putnbr(fdf.proj.f_i);
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
@@ -66,7 +77,7 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 			fdf.map.point[j][i].x = fdf.map.x + i * 2 * fdf.zoom - 1920 / 2;
 			fdf.map.point[j][i].y = fdf.map.y + j * 2 * fdf.zoom - 1080 / 2;
 			// fdf.map.point[j][i].z *= fdf.zoom;
-			fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
+				fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
 			(fdf).d3d.ox, (fdf).d3d.oz);
 			i++;
 		}
@@ -97,8 +108,17 @@ void	makelinksdraw(t_fdf fdf, int i, int j)
 	}
 }
 
-void	make1stgrid(t_fdf fdf)
+void	make1stgrid(t_fdf *ffdf)
 {
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	if (fdf.proj.f_i)
+	{
+		(*ffdf).d3d.ox = 0.523599;
+		(*ffdf).d3d.oz = 0.523599;
+	}
 	make1stkoords(fdf, 0, 0);
 	makelinksdraw(fdf, 0, 0);
+	(*ffdf).proj.f_i = 0;
 }

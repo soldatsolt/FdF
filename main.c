@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 14:55:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:11:33 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ int		deal_key(int key, t_fdf *fdf)
 	// ft_putnbr(key);
 	// ft_putchar('\n');
 	if (key == 34 && (*fdf).proj.f_i == 0)
+	{
 		(*fdf).proj.f_i = 1;
+	}
 	// if (key == 34 && (*fdf).proj.f_i == 1)
 	// 	(*fdf).proj.f_i = 0;
 	if (key == 53)
@@ -172,8 +174,8 @@ void	vivod_strs_on_screen(t_fdf *fdf)
 int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
 {
 	mlx_clear_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	ft_bzero((*fdf).img.str, 7680 * 1080);
-	make1stgrid(*fdf);
+	makefongray(*fdf);
+	make1stgrid(fdf);
 	mlx_put_image_to_window((*fdf).mlx_ptr, (*fdf).win_ptr, (*fdf).img_ptr, 0, 0);
 	vivod_strs_on_screen(fdf);
 	return (0);
