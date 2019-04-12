@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ergottli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 21:41:57 by ergottli          #+#    #+#             */
-/*   Updated: 2019/04/12 22:56:37 by ergottli         ###   ########.fr       */
-/*   Updated: 2019/04/12 22:51:15 by kmills           ###   ########.fr       */
+/*   Created: 2019/04/12 23:38:44 by ergottli          #+#    #+#             */
+/*   Updated: 2019/04/12 23:40:01 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +48,7 @@ int		ft_num_counter(char *str)
 	return (num);
 }
 
-void		first_colour(t_fdf *fdf)
+void	first_colour(t_fdf *fdf)
 {
 	int y;
 	int x;
@@ -72,57 +71,47 @@ void		first_colour(t_fdf *fdf)
 	}
 }
 
+void	var_in_map(t_fdf *fdf, char **num, int y)
+{
+	int x;
 
+	x = 0;
+	while (num[x])
+	{
+		(fdf->map.point)[y][x].x = x;
+		(fdf->map.point)[y][x].y = y;
+		(fdf->map.point)[y][x].z = ft_atoi(num[x]);
+		(fdf->map.point)[y][x].k = (fdf->map.point)[y][x].z;
+		(fdf->map.point)[y][x].kz = (fdf->map.point)[y][x].z;
+		find_min_max(fdf->map.point[y][x].z, 0);
+		fdf->map.point[y][x].colour = receive_colour(num[x]);
+		++x;
+	}
+	fdf->map.width = x;
+}
 
 int		map_maker(char *str, t_fdf *fdf, int y_count)
 {
-	t_point *poin;
-	int  fd;
-	int  x;
-	int  len;
-	char *line;
-	char **num;
+	int		fd;
+	int		len;
+	char	*line;
+	char	**num;
 
-	poin = (t_point*)malloc(sizeof(t_point));
-	poin->x = 2147483647;
-	poin->y = -2147483648;
-	fd = open(str,  O_RDONLY);
+	fd = open(str, O_RDONLY);
 	fdf->map.point = (t_point**)malloc(sizeof(t_point*) * y_count);
 	fdf->map.height = y_count;
 	y_count = 0;
-	x = 0;
 	len = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		x = 0;
 		len = ft_num_counter(line);
 		(fdf->map.point)[y_count] = (t_point*)malloc(sizeof(t_point) * len);
 		num = ft_strsplit(line, ' ');
-		while (num[x])
-		{
-			(fdf->map.point)[y_count][x].x = x;
-			(fdf->map.point)[y_count][x].y = y_count;
-			(fdf->map.point)[y_count][x].z = ft_atoi(num[x]);
-			if ((fdf->map.point)[y_count][x].z)
-			{
-				(fdf->map.point)[y_count][x].k = ft_atoi(num[x]);
-				(fdf->map.point)[y_count][x].kz = ft_atoi(num[x]);
-			}
-			else
-			{
-				(fdf->map.point)[y_count][x].k = 0;
-				(fdf->map.point)[y_count][x].kz = 0;
-			}
-			find_min_max(poin, fdf->map.point[y_count][x].z, 0);
-			fdf->map.point[y_count][x].colour = receive_colour(num[x]);
-			++x;
-		}
-		fdf->map.width = x;
+		var_in_map(fdf, num, y_count);
 		y_count++;
 	}
-	fdf->map.min = find_min_max(poin, fdf->map.point[--y_count][--x].z, 1);
-	fdf->map.max = find_min_max(poin, fdf->map.point[--y_count][--x].z, 2);
-	free(poin);
+	fdf->map.min = find_min_max(fdf->map.point[--y_count][0].z, 1);
+	fdf->map.max = find_min_max(fdf->map.point[--y_count][0].z, 2);
 	first_colour(fdf);
 	return (1);
 }

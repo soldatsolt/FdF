@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 22:51:05 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 23:33:52 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,11 @@ typedef struct	s_fdf
 
 }				t_fdf;
 
+void	var_in_map(t_fdf *fdf, char **num, int y);
 t_point	rec_col(t_mkline koord, int colour1, int colour2);
 int		receive_colour(char *str);
 int		get_init_colour(t_map map, int colour1, int colour2, int z);
-int		find_min_max(t_point *point, int value, int flag);
+int		find_min_max(int value, int flag);
 double	percent(int start, int end, int current);
 int		get_light(int start, int end, double percentage);
 int		get_color(int *ds, int x, int y, t_point col);

@@ -6,7 +6,7 @@
 /*   By: ergottli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:42:15 by ergottli          #+#    #+#             */
-/*   Updated: 2019/04/12 22:32:57 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 23:32:39 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ double	percent(int start, int end, int current)
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
 
-int		find_min_max(t_point *point, int value, int flag)
+int		find_min_max(int value, int flag)
 {
-	if (value > point->y)
-		point->y = value;
-	if (value < point->x)
-		point->x = value;
+	static int min = 2147483647;
+	static int max = -2147483648;
+
+	if (value > max)
+		max = value;
+	if (value < min)
+		min = value;
 	if (flag == 1)
-		return (point->x);
+		return (min);
 	if (flag == 2)
-		return (point->y);
+		return (max);
 	return (0);
 }
 
