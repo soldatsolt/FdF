@@ -6,23 +6,27 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:38:34 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 17:57:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 22:51:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	umenzoom(t_fdf *ffdf, int i, int j)
+void	uvel_z(t_fdf *ffdf, int i, int j)
 {
 	t_fdf	fdf;
 
+	(*ffdf).nb *= 1.2;
+	(*ffdf).nm = 1;
 	fdf = *ffdf;
-	(*ffdf).zoom /= 2;
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
-			// fdf.map.point[j][i].z *= fdf.zoom / (fdf.zoom * 2);
+			if (fdf.map.point[j][i].k)
+				(*ffdf).map.point[j][i].k *= 1.2;
+			if (!fdf.map.point[j][i].k && fdf.map.point[j][i].kz)
+				(*ffdf).map.point[j][i].k = (*ffdf).map.point[j][i].kz;
 			i++;
 		}
 		i = 0;
@@ -30,17 +34,19 @@ void	umenzoom(t_fdf *ffdf, int i, int j)
 	}
 }
 
-void	uvelzoom(t_fdf *ffdf, int i, int j)
+void	umen_z(t_fdf *ffdf, int i, int j)
 {
 	t_fdf	fdf;
 
+	(*ffdf).nm *= 1.2;
+	(*ffdf).nb = 1;
 	fdf = *ffdf;
-	(*ffdf).zoom *= 2;
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
-			// fdf.map.point[j][i].z *= fdf.zoom / (fdf.zoom / 2);
+			if (fdf.map.point[j][i].k)
+				(*ffdf).map.point[j][i].k /= 1.2;
 			i++;
 		}
 		i = 0;
@@ -71,7 +77,15 @@ void	uprld(int key, t_fdf *fdf)
 	if (key == 13)
 		(*fdf).map.y -= 45;
 	if (key == 69)
-		uvelzoom(fdf, 0, 0);
+		(*fdf).zoom *= 2;
 	if (key == 78)
-		umenzoom(fdf, 0, 0);
+		(*fdf).zoom /= 2;
+}
+
+t_fdf	*zero_buttons(t_fdf *fdf)
+{
+	(*fdf).buttons[0] = 0;
+	(*fdf).buttons[1] = 0;
+	(*fdf).buttons[2] = 0;
+	return (fdf);
 }

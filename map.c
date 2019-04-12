@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ergottli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:41:57 by ergottli          #+#    #+#             */
-/*   Updated: 2019/04/12 22:54:47 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:56:37 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:51:15 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +76,7 @@ void		first_colour(t_fdf *fdf)
 
 int		map_maker(char *str, t_fdf *fdf, int y_count)
 {
-//	t_point *poin;
+	t_point *poin;
 	int  fd;
 	int  x;
 	int  len;
