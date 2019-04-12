@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 18:08:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 18:41:35 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ void	uvel_z(t_fdf *ffdf, int i, int j)
 {
 	t_fdf	fdf;
 
-	(*ffdf).n = 1.5; 
+	(*ffdf).nb *= 1.2;
+	(*ffdf).nm = 1;
 	fdf = *ffdf;
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				(*ffdf).map.point[j][i].k *= (*ffdf).n;
+				(*ffdf).map.point[j][i].k *= (*ffdf).nb;
 			if (!fdf.map.point[j][i].k && fdf.map.point[j][i].kz)
 				(*ffdf).map.point[j][i].k = (*ffdf).map.point[j][i].kz;
 			i++;
@@ -48,14 +49,15 @@ void	umen_z(t_fdf *ffdf, int i, int j)
 {
 	t_fdf	fdf;
 
-	(*ffdf).n = 1.5; 
+	(*ffdf).nm *= 1.2;
+	(*ffdf).nb = 1;
 	fdf = *ffdf;
 	while (j < fdf.map.height)
 	{
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				(*ffdf).map.point[j][i].k /= (*ffdf).n;
+				(*ffdf).map.point[j][i].k /= (*ffdf).nm;
 			i++;
 		}
 		i = 0;
@@ -220,7 +222,8 @@ int		main(int argc,  char **argv)
 	fdf.d3d.ox = 0;
 	fdf.d3d.oy = 0;
 	fdf.d3d.oz = 0;
-	fdf.n = 1;
+	fdf.nb = 1;
+	fdf.nm = 1;
 	fdf.zoom = 32768;
 	fdf.mouse.mouse_flag1 = 0;
 	fdf.mouse.mouse_flag2 = 0;

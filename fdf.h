@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 18:04:07 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 18:19:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ typedef struct s_mouse
 
 typedef struct	s_fdf
 {
-	float		n;
+	float		nm;
+	float		nb;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;

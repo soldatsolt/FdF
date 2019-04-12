@@ -6,23 +6,30 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 17:59:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 18:49:20 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int		raduga(t_point *dot)
+{
+	int color;
+
+	(*dot).colour = (*dot).colour + 1;
+	color = (*dot).colour;
+	return (color);
+}
+
 void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 {
 	if (fdf.map.point[j1][i1].x < 5000 && fdf.map.point[j1][i1].y < 3000 && \
-	fdf.map.point[j2][i2].x < 5000 && fdf.map.point[j2][i2].y < 3000 && \
-	fdf.map.point[j1][i1].x >= -1000 && fdf.map.point[j1][i1].y >= -1000 && \
-	fdf.map.point[j2][i2].x >= -1000 && fdf.map.point[j2][i2].y >= -1000)
+	fdf.map.point[j2][i2].x < 5000 && fdf.map.point[j2][i2].y < 3000)
 	{
 		xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
 		xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
-		draw_line(fdf, (int)fdf.map.point[j1][i1].colour, \
-		(int)fdf.map.point[j2][i2].colour);
+		draw_line(fdf, raduga(&(fdf.map.point[j1][i1])), \
+		raduga(&(fdf.map.point[j2][i2])));
 	}
 }
 
