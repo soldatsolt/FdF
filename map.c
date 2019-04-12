@@ -6,13 +6,11 @@
 /*   By: ergottli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:41:57 by ergottli          #+#    #+#             */
-/*   Updated: 2019/04/12 22:03:24 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:54:47 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fdf.h"
-
 
 int		receive_colour(char *str)
 {
@@ -23,7 +21,8 @@ int		receive_colour(char *str)
 		++i;
 	if (!str[i])
 		return (268435455);
-	if (str[i] == ',' && str[i + 1] && str[i + 2] && str[i + 1] == '0' && str[i + 2] == 'x')
+	if (str[i] == ',' && str[i + 1] && str[i + 2] &&
+			str[i + 1] == '0' && str[i + 2] == 'x')
 		return (ft_atoi_base(str + i + 3, 16));
 	return (-1);
 }
@@ -63,7 +62,8 @@ void		first_colour(t_fdf *fdf)
 		{
 			if (fdf->map.point[y][x].colour == 268435455)
 			{
-				fdf->map.point[y][x].colour = get_init_colour(fdf->map, 0x5cc795, 0xe8e56e, fdf->map.point[y][x].z);
+				fdf->map.point[y][x].colour = get_init_colour(fdf->map,
+						0x5cc795, 0xe8e56e, fdf->map.point[y][x].z);
 			}
 			++x;
 		}
@@ -71,9 +71,11 @@ void		first_colour(t_fdf *fdf)
 	}
 }
 
+
+
 int		map_maker(char *str, t_fdf *fdf, int y_count)
 {
-	t_point *poin;
+//	t_point *poin;
 	int  fd;
 	int  x;
 	int  len;
