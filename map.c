@@ -44,7 +44,6 @@ int get_color(int error2, int *ds, t_mkline example, int x, int y, int colour1, 
     red = get_light((colour1 >> 16) & 0xFF, (colour2 >> 16) & 0xFF, percentage);
     green = get_light((colour1 >> 8) & 0xFF, (colour2 >> 8) & 0xFF, percentage);
     blue = get_light(colour1 & 0xFF, colour2 & 0xFF, percentage);
-//	printf("x = %d y = %d, percentage = %f ex->x1 = %d ex->x2 = %d ex->y1 = %d ex->x2 = %d\n", x, y, percentage, example.x1, example.x2, example.y1, example.y2);
     return ((red << 16) | (green << 8) | blue);
 }
 
@@ -111,7 +110,7 @@ void		first_colour(t_fdf *fdf)
 		{
 			if (fdf->map.point[y][x].colour == 268435455)
 			{
-				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0x761313, 0xCCA8A8, fdf->map.point[y][x].z);
+				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0xa70017, 0xbd00, fdf->map.point[y][x].z);
 			}
 			++x;
 		}
