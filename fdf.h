@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 18:19:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 19:38:12 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct	s_fdf
 	void		*win_ptr;
 	void		*img_ptr;
 	int			zoom;
+	int			buttons[4];
 	t_img		img;
 	t_mkline	*koord;
 	t_map		map;

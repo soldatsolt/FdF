@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 19:03:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 21:22:38 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 	{
 		xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
 		xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
+		if (fdf.buttons[0] == 1)
 		draw_line(fdf, raduga(&(fdf.map.point[j1][i1])), \
 		raduga(&(fdf.map.point[j2][i2])));
+		else 
+			draw_line(fdf, fdf.map.point[j1][i1].colour, fdf.map.point[j2][i2].colour);
 	}
 }
 
@@ -57,13 +60,23 @@ t_point	dimension3(t_point dot, float qx, float qz)
 void	makefongray(t_fdf fdf)
 {
 	int i;
+	static int k = 0;
+	int g;
 
 	i = 0;
+	if (fdf.buttons[1] == 1)
+		k = k > 200 ? 0 : k + 2;
+	else
+		k = 0;
+	printf("%d but[1] = %d\n", k, fdf.buttons[1]);
 	while (i < 7680 * 1080)
 	{
-		fdf.img.str[i] = 29;
-		fdf.img.str[i + 1] = 29;
-		fdf.img.str[i + 2] = 29;
+		fdf.img.str[i] = 29 >> (k % 2);
+		fdf.img.str[i + 1] = (29 + k) << ((k % 3) - 2);
+		fdf.img.str[i + 2] = (29 + (k * 3)) << (k % 5);
+	//	fdf.img.str[i + 2] = (29 +(k * 13)) >> 16;
+	//	fdf.img.str[i + 3] = 0xff;//(292929 + k * 200 * i) << 16;
+	//	k *= k;
 		i += 4;
 	}
 }

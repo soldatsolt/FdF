@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 19:11:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 19:48:06 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ int		deal_key(int key, t_fdf *fdf)
 {
 	// ft_putnbr(key);
 	// ft_putchar('\n');
+	if (key == 18)
+	{
+		(*fdf).buttons[0] = 0;
+		(*fdf).buttons[1] = 0;
+		(*fdf).buttons[2] = 0;
+		(*fdf).buttons[2] = 0;
+	}
+	if (key == 8)
+		(*fdf).buttons[1] = 1;
+	if (key == 19)
+		(*fdf).buttons[0] = 1;
 	if (key == 34)
 		(*fdf).proj.f_i = 1;
 	if (key == 35)
