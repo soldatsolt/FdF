@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ergottli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:41:57 by ergottli          #+#    #+#             */
-/*   Updated: 2019/04/12 21:45:28 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:51:15 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		first_colour(t_fdf *fdf)
 		{
 			if (fdf->map.point[y][x].colour == 268435455)
 			{
-				fdf->map.point[y][x].colour = get_init_colour(fdf->map.min, fdf->map.max, 0x5cc795, 0xe8e56e, fdf->map.point[y][x].z);
+				fdf->map.point[y][x].colour = get_init_colour(fdf->map, 0x5cc795, 0xe8e56e, fdf->map.point[y][x].z);
 			}
 			++x;
 		}

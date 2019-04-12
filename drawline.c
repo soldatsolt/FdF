@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:41:39 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 21:16:26 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:35:16 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,15 @@ void	draw_line(t_fdf fdf, int colour1, int colour2)
 	int		*ds;
 	int		error;
 	int		error2;
-	int		colour;
-	t_mkline	example;
+	t_point	colour;
 
-	example = *fdf.koord;
+	colour = rec_col(*fdf.koord, colour1, colour2);
 	ds = deltaandsign(fdf);
 	error = ds[0] - ds[1];
-	colour = get_color(error * 2, ds, example, fdf.koord->x2, fdf.koord->y2, colour1, colour2);
-	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2, colour);
+	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2, get_color(ds, fdf.koord->x2, fdf.koord->y2, colour));
 	while (fdf.koord->x1 != fdf.koord->x2 || fdf.koord->y1 != fdf.koord->y2)
 	{
-		colour = get_color(error2, ds, example, fdf.koord->x1, fdf.koord->y1, colour1, colour2);
-		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1, colour);
+		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1, get_color(ds, fdf.koord->x1, fdf.koord->y1, colour));
 		error2 = error * 2;
 		if (error2 > -ds[1])
 		{
