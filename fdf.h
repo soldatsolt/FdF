@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 21:45:05 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 22:48:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,9 @@ void	uprld(int key, t_fdf *fdf);
 void	make1stgrid(t_fdf *ffdf);
 t_point	dimension3(t_point dot, float qx, float qz);
 void	makefongray(t_fdf fdf);
-void	uvelzoom(t_fdf *ffdf, int i, int j);
-void	umenzoom(t_fdf *ffdf, int i, int j);
+void	uvel_z(t_fdf *ffdf, int i, int j);
+void	umen_z(t_fdf *ffdf, int i, int j);
+t_fdf	*zero_buttons(t_fdf *fdf);
+void	err_map(void);
 
 #endif
