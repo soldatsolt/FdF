@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 16:14:07 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:16:58 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,18 @@ void	make1stgrid(t_fdf *ffdf)
 	{
 		(*ffdf).d3d.ox = 0.523599;
 		(*ffdf).d3d.oz = 0.523599;
+		(*ffdf).map.x = 200;
+		(*ffdf).map.y = 200;
+	}
+	if (fdf.proj.f_p)
+	{
+		(*ffdf).d3d.ox = 0;
+		(*ffdf).d3d.oz = 0;
+		(*ffdf).map.x = 200;
+		(*ffdf).map.y = 200;
 	}
 	make1stkoords(fdf, 0, 0);
 	makelinksdraw(fdf, 0, 0);
 	(*ffdf).proj.f_i = 0;
+	(*ffdf).proj.f_p = 0;
 }
