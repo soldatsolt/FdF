@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 16:21:24 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:20:06 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 {
-	if (fdf.map.point[j1][i1].x < 2000 && fdf.map.point[j1][i1].y < 1200 && \
-	fdf.map.point[j2][i2].x < 2000 && fdf.map.point[j2][i2].y < 1200)
+	if (fdf.map.point[j1][i1].x < 5000 && fdf.map.point[j1][i1].y < 3000 && \
+	fdf.map.point[j2][i2].x < 5000 && fdf.map.point[j2][i2].y < 3000 && \
+	fdf.map.point[j1][i1].x >= -1000 && fdf.map.point[j1][i1].y >= -1000 && \
+	fdf.map.point[j2][i2].x >= -1000 && fdf.map.point[j2][i2].y >= -1000)
 	{
 		xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
 		xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
@@ -30,11 +32,11 @@ t_point	dimension3(t_point dot, float qx, float qz)
 	int		p_y;
 	int		p_z;
 
-	// if (dot.z == 10)
+	// if (dot.z > 0)
 	// 	dot.z *= 7;
 	p_x = dot.x;
 	p_y = dot.y;
-	p_z = dot.z;
+	p_z = (int)dot.z;
 	dot.x = 1920 / 2 + p_x * cos(qz) - p_y * sin(qz);
 	dot.y = p_x * sin(qz) + p_y * cos(qz);
 	p_y = dot.y;
@@ -74,10 +76,12 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 	{
 		while (i < fdf.map.width)
 		{
-			fdf.map.point[j][i].x = fdf.map.x + i * 2 * fdf.zoom - 1920 / 2;
-			fdf.map.point[j][i].y = fdf.map.y + j * 2 * fdf.zoom - 1080 / 2;
-			// fdf.map.point[j][i].z *= fdf.zoom;
-				fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
+			fdf.map.point[j][i].x = fdf.map.x + i * 80 * fdf.zoom / 32768 - 1920 / 2;
+			fdf.map.point[j][i].y = fdf.map.y + j * 80 * fdf.zoom / 32768 - 1080 / 2;
+			fdf.map.point[j][i].z *= fdf.zoom / 32768;
+			if (!fdf.map.point[j][i].z && fdf.map.point[j][i].k)
+				fdf.map.point[j][i].z = fdf.map.point[j][i].k * fdf.zoom / 32768;
+			fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
 			(fdf).d3d.ox, (fdf).d3d.oz);
 			i++;
 		}
@@ -116,9 +120,10 @@ void	make1stgrid(t_fdf *ffdf)
 	if (fdf.proj.f_i)
 	{
 		(*ffdf).d3d.ox = 0.523599;
-		(*ffdf).d3d.oz = 0.523599;
-		(*ffdf).map.x = 200;
-		(*ffdf).map.y = 200;
+		(*ffdf).d3d.oz = -0.523599;
+		(*ffdf).map.x = 260;
+		(*ffdf).map.y = 100;
+		(*ffdf).zoom = 32768;
 	}
 	if (fdf.proj.f_p)
 	{
@@ -126,6 +131,7 @@ void	make1stgrid(t_fdf *ffdf)
 		(*ffdf).d3d.oz = 0;
 		(*ffdf).map.x = 217;
 		(*ffdf).map.y = 136;
+		(*ffdf).zoom = 32768;
 	}
 	make1stkoords(fdf, 0, 0);
 	makelinksdraw(fdf, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 16:18:20 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:12:27 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	uvel_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				fdf.map.point[j][i].z += 10;
+				fdf.map.point[j][i].z *= 1.5;
 			i++;
 		}
 		i = 0;
@@ -51,7 +51,7 @@ void	umen_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				fdf.map.point[j][i].z -= 10;
+				fdf.map.point[j][i].z /= 1.5;
 			i++;
 		}
 		i = 0;
@@ -113,10 +113,10 @@ int		expose_hook(void *param)
 
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
-	if (mouse == 4)
-		(*fdf).zoom += 1;
-	if (mouse == 5)
-		(*fdf).zoom -= 1;
+	if (mouse == 4 && (*fdf).zoom < 524287)
+		(*fdf).zoom *= 2;
+	if (mouse == 5 && (*fdf).zoom > 512)
+		(*fdf).zoom /= 2;
 	if (mouse == 1 && x > 0 && y > 0)
 	{
 		fdf->mouse.mouse_flag1 = 1;
@@ -169,6 +169,9 @@ void	vivod_strs_on_screen(t_fdf *fdf)
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 180, 0xFFFFFF, "ZOOM:");
 	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 90, 180, 0xFFFFFF, \
 	ft_itoa((*fdf).zoom));
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 40, 210, 0xFFFFFF, "Z[2][2] = ");
+	mlx_string_put((*fdf).mlx_ptr, (*fdf).win_ptr, 140, 210, 0xFFFFFF, \
+	ft_itoa((*fdf).map.point[2][2].z));
 }
 
 int		doloop(t_fdf *fdf)// ВОТ ТУТ ДОЛЖНО ВСЁ ДЕЛАТЬ
@@ -213,7 +216,7 @@ int		main(int argc,  char **argv)
 	fdf.d3d.ox = 0;
 	fdf.d3d.oy = 0;
 	fdf.d3d.oz = 0;
-	fdf.zoom = 40;
+	fdf.zoom = 32768;
 	fdf.mouse.mouse_flag1 = 0;
 	fdf.mouse.mouse_flag2 = 0;
     printf(" bits_per_pixel = %i\n size_line = %i\n endian = %i\n", fdf.img.bits_per_pixel, fdf.img.size_line, fdf.img.endian);
