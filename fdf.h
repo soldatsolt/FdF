@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 17:32:41 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 18:04:07 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_point
 	int			z;
 	int			colour;
 	int			k;
+	int			kz;
 }				t_point;
 
 typedef struct	s_proj
@@ -85,6 +86,7 @@ typedef struct s_mouse
 
 typedef struct	s_fdf
 {
+	float		n;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
