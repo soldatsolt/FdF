@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 13:04:06 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 13:21:23 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	draw2dots(t_fdf fdf, int j1, int i1, int j2, int i2)
 {
-	xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
-	xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
-	draw_line(fdf, (int)fdf.map.point[j1][i1].colour, (int)fdf.map.point[j2][i2].colour);
+	if (fdf.map.point[j1][i1].x < 2000 && fdf.map.point[j1][i1].y < 1200 && \
+	fdf.map.point[j2][i2].x < 2000 && fdf.map.point[j2][i2].y < 1200)
+	{
+		xy1(fdf, fdf.map.point[j1][i1].x, fdf.map.point[j1][i1].y);
+		xy2(fdf, fdf.map.point[j2][i2].x, fdf.map.point[j2][i2].y);
+		draw_line(fdf, (int)fdf.map.point[j1][i1].colour, \
+		(int)fdf.map.point[j2][i2].colour);
+	}
 }
 
 t_point	dimension3(t_point dot, float qx, float qz)
