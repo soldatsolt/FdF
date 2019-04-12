@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 16:16:28 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:18:20 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,10 @@ int		main(int argc,  char **argv)
     fdf.img.str = mlx_get_data_addr(fdf.img_ptr, &fdf.img.bits_per_pixel, &fdf.img.size_line, &fdf.img.endian);
     fdf.koord = (t_mkline *)malloc(sizeof(t_mkline));
 	fdf.proj.f_i = 0;
-	fdf.d3d.ox = 0.5;
+	fdf.proj.f_p = 0;
+	fdf.d3d.ox = 0;
 	fdf.d3d.oy = 0;
-	fdf.d3d.oz = 0.5;
+	fdf.d3d.oz = 0;
 	fdf.zoom = 40;
 	fdf.mouse.mouse_flag1 = 0;
 	fdf.mouse.mouse_flag2 = 0;
