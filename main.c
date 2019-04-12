@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 04:04:28 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 17:12:27 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:43:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	uvel_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				fdf.map.point[j][i].z *= 1.5;
+				(*ffdf).map.point[j][i].k *= 1.5;
 			i++;
 		}
 		i = 0;
@@ -51,7 +51,7 @@ void	umen_z(t_fdf *ffdf, int i, int j)
 		while (i < fdf.map.width)
 		{
 			if (fdf.map.point[j][i].k)
-				fdf.map.point[j][i].z /= 1.5;
+				(*ffdf).map.point[j][i].k /= 1.5;
 			i++;
 		}
 		i = 0;
@@ -114,9 +114,9 @@ int		expose_hook(void *param)
 int		deal_mouse(int mouse, int x, int y, t_fdf *fdf)
 {
 	if (mouse == 4 && (*fdf).zoom < 524287)
-		(*fdf).zoom *= 2;
+		uvelzoom(fdf, 0, 0);
 	if (mouse == 5 && (*fdf).zoom > 512)
-		(*fdf).zoom /= 2;
+		umenzoom(fdf, 0, 0);
 	if (mouse == 1 && x > 0 && y > 0)
 	{
 		fdf->mouse.mouse_flag1 = 1;

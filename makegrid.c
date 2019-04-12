@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 17:20:06 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:41:27 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_point	dimension3(t_point dot, float qx, float qz)
 	int		p_y;
 	int		p_z;
 
-	// if (dot.z > 0)
+	// if (dot.z)
 	// 	dot.z *= 7;
 	p_x = dot.x;
 	p_y = dot.y;
@@ -78,9 +78,9 @@ void	make1stkoords(t_fdf fdf, int i, int j)
 		{
 			fdf.map.point[j][i].x = fdf.map.x + i * 80 * fdf.zoom / 32768 - 1920 / 2;
 			fdf.map.point[j][i].y = fdf.map.y + j * 80 * fdf.zoom / 32768 - 1080 / 2;
-			fdf.map.point[j][i].z *= fdf.zoom / 32768;
-			if (!fdf.map.point[j][i].z && fdf.map.point[j][i].k)
-				fdf.map.point[j][i].z = fdf.map.point[j][i].k * fdf.zoom / 32768;
+			fdf.map.point[j][i].z = fdf.map.point[j][i].k * fdf.zoom / 32768;
+			// if (!fdf.map.point[j][i].z && fdf.map.point[j][i].k)
+			// 	fdf.map.point[j][i].z = fdf.map.point[j][i].k * fdf.zoom / 32768;
 			fdf.map.point[j][i] = dimension3((fdf.map.point[j][i]), \
 			(fdf).d3d.ox, (fdf).d3d.oz);
 			i++;

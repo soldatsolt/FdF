@@ -6,11 +6,47 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:38:34 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 12:04:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:39:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	umenzoom(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	(*ffdf).zoom /= 2;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			// fdf.map.point[j][i].z *= fdf.zoom / (fdf.zoom * 2);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
+
+void	uvelzoom(t_fdf *ffdf, int i, int j)
+{
+	t_fdf	fdf;
+
+	fdf = *ffdf;
+	(*ffdf).zoom *= 2;
+	while (j < fdf.map.height)
+	{
+		while (i < fdf.map.width)
+		{
+			// fdf.map.point[j][i].z *= fdf.zoom / (fdf.zoom / 2);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+}
 
 void	uprld(int key, t_fdf *fdf)
 {
@@ -35,7 +71,7 @@ void	uprld(int key, t_fdf *fdf)
 	if (key == 13)
 		(*fdf).map.y -= 45;
 	if (key == 69)
-		(*fdf).zoom += 1;
+		uvelzoom(fdf, 0, 0);
 	if (key == 78)
-		(*fdf).zoom -= 1;
+		umenzoom(fdf, 0, 0);
 }
