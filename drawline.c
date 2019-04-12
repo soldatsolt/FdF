@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 00:41:39 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 22:35:16 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 23:31:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,17 @@ void	draw_line(t_fdf fdf, int colour1, int colour2)
 	colour = rec_col(*fdf.koord, colour1, colour2);
 	ds = deltaandsign(fdf);
 	error = ds[0] - ds[1];
-	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2, get_color(ds, fdf.koord->x2, fdf.koord->y2, colour));
+	whitepixel(fdf, fdf.koord->x2, fdf.koord->y2, get_color(ds, fdf.koord->x2, \
+	fdf.koord->y2, colour));
 	while (fdf.koord->x1 != fdf.koord->x2 || fdf.koord->y1 != fdf.koord->y2)
 	{
-		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1, get_color(ds, fdf.koord->x1, fdf.koord->y1, colour));
+		whitepixel(fdf, fdf.koord->x1, fdf.koord->y1, get_color(ds, \
+		fdf.koord->x1, fdf.koord->y1, colour));
 		error2 = error * 2;
 		if (error2 > -ds[1])
-		{
-			error -= ds[1];
-			fdf.koord->x1 += ds[2];
-		}
+			if1indraw_line(&error, ds, &fdf);
 		if (error2 < ds[0])
-		{
-			error += ds[0];
-			fdf.koord->y1 += ds[3];
-		}
+			if2indraw_line(&error, ds, &fdf);
 	}
 	free(ds);
 }
@@ -80,4 +76,3 @@ void	xy2(t_fdf fdf, int x2, int y2)
 	fdf.koord->x2 = x2;
 	fdf.koord->y2 = y2;
 }
-

@@ -2,7 +2,7 @@ NAME = fdf
 MAKE = make
 override G += 
 FLAGS = -Wall -Wextra -Werror
-SRCS = main.c map.c movekeys.c validation.c drawline.c makegrid.c projection.c colour.c additional.c
+SRCS = main.c map.c movekeys.c validation.c drawline.c makegrid.c projection.c keymouse.c colour.c additional.c drawetc.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = ./libft/libft.a
 all: $(NAME)
