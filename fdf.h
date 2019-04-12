@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:18:18 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 19:38:12 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:45:05 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,20 @@ typedef struct	s_fdf
 
 }				t_fdf;
 
-int	get_color(int error2, int *ds, t_mkline example, int x, int y, int colour1, int colour2);
-int	map_maker(char *str, t_fdf *fdf, int y_count);
-int     valid(char *str);
+int		receive_colour(char *str);
+int		get_init_colour(int min, int max, int colour1, int colour2, int z);
+int		find_min_max(t_point *point, int value, int flag);
+double	percent(int start, int end, int current);
+int		get_light(int start, int end, double percentage);
+int		get_color(int error2, int *ds, t_mkline example, int x, int y, int colour1, int colour2);
+int		map_maker(char *str, t_fdf *fdf, int y_count);
+int		valid(char *str);
 void	*img_ptr;
-int	deal_key(int key, t_fdf *fdf);
-int	expose_hook(void *param);
-int	deal_mouse(int mouse, int x, int y, t_fdf *fdf);
+int		deal_key(int key, t_fdf *fdf);
+int		expose_hook(void *param);
+int		deal_mouse(int mouse, int x, int y, t_fdf *fdf);
 void	whitepixel(t_fdf fdf, int x, int y, int colour);
-int	*deltaandsign(t_fdf fdf);
+int		*deltaandsign(t_fdf fdf);
 void	draw_line(t_fdf fdf, int colour1, int colour2);
 void	xy1(t_fdf fdf, int x1, int y1);
 void	xy2(t_fdf fdf, int x2, int y2);

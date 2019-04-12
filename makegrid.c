@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 21:22:38 by ergottli         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:30:08 by ergottli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,11 @@ void	makefongray(t_fdf fdf)
 		k = k > 200 ? 0 : k + 2;
 	else
 		k = 0;
-	printf("%d but[1] = %d\n", k, fdf.buttons[1]);
 	while (i < 7680 * 1080)
 	{
 		fdf.img.str[i] = 29 >> (k % 2);
 		fdf.img.str[i + 1] = (29 + k) << ((k % 3) - 2);
 		fdf.img.str[i + 2] = (29 + (k * 3)) << (k % 5);
-	//	fdf.img.str[i + 2] = (29 +(k * 13)) >> 16;
-	//	fdf.img.str[i + 3] = 0xff;//(292929 + k * 200 * i) << 16;
-	//	k *= k;
 		i += 4;
 	}
 }
