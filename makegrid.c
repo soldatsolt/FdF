@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:33 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/12 14:54:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/12 14:56:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	makefongray(t_fdf fdf)
 	i = 0;
 	while (i < 7680 * 1080)
 	{
-		fdf.img.str[i] = 19;
-		fdf.img.str[i + 1] = 17;
-		fdf.img.str[i + 2] = 13;
+		fdf.img.str[i] = 29;
+		fdf.img.str[i + 1] = 29;
+		fdf.img.str[i + 2] = 29;
 		i += 4;
 	}
 }
